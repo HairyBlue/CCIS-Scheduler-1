@@ -1,7 +1,12 @@
+import Home from "./components/StudentPage/Home";
+import "./App.css";
+
 function App() {
   return (
     <div className="App">
-      <main>CCIS Scheduler</main>
+      <main>
+        <Home />
+      </main>
     </div>
   );
 }

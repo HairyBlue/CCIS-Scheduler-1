@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font: 12pt "Rubik", sans-serif;
+}
+
+:root {
+  --main-bg-color: #2b2f31;
+  --main-fg-color: #dae3e4;
+  --border-color: #777d7e;
+
+  --container-bg-color: #1d1e1f;
+
+  --border-radius-sm: 5px;
+}
+
+.App {
+  height: 100vh;
+}
+
+main {
+  background-color: var(--main-bg-color);
+  color: var(--main-fg-color);
+  padding: 5vh 5vw;
+}
+
+.container {
+  display: flex;
+}
+
+.divider {
+  border-top: 1px solid var(--border-color);
+}
