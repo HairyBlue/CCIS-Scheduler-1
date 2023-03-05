@@ -1,0 +1,25 @@
+.schedule {
+  flex-direction: column;
+  width: 45vw;
+  height: var(--md-height);
+  background-color: var(--container-bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  padding: 20px;
+}
+
+.schedule-header {
+  flex-direction: column;
+  gap: 15px;
+}
+
+.schedule-header > p {
+  font-weight: bolder;
+}
+
+.schedule-meetings-container {
+  flex-direction: column;
+  padding: 20px;
+
+  gap: 10px;
+}

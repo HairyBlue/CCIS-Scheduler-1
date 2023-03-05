@@ -15,6 +15,8 @@
   --container-bg-color: #1d1e1f;
 
   --border-radius-sm: 5px;
+
+  --md-height: 90vh;
 }
 
 .App {

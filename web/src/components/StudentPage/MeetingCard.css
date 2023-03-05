@@ -1,0 +1,48 @@
+.meeting-card-container {
+  gap: 20px;
+
+  background-color: var(--main-bg-color);
+  padding: 10px 20px;
+  border-radius: var(--border-radius-sm);
+}
+
+.meeting-information-container {
+  flex-direction: column;
+  gap: 10px;
+}
+
+.meeting-information-container > h3 {
+  font-weight: bolder;
+}
+
+.meeting-information-container > p {
+  font-weight: lighter;
+  font-size: 10pt;
+}
+
+.button-container {
+  align-items: center;
+}
+
+.view-schedule-button {
+  --neon-green: #21e731;
+
+  width: 100px;
+
+  color: var(--container-bg-color);
+  background-color: var(--neon-green);
+
+  border: none;
+  border-radius: var(--border-radius-sm);
+
+  padding: 10px;
+  font-size: 12pt;
+  transition: ease-in-out 0.3s;
+}
+
+.view-schedule-button:hover {
+  --neon-green: #21e731;
+
+  color: var(--neon-green);
+  background-color: var(--container-bg-color);
+}

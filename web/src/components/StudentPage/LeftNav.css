@@ -1,6 +1,6 @@
 .left-nav-container {
   flex-direction: column;
-  height: 90vh;
+  height: var(--md-height);
   width: 25vw;
   background-color: var(--container-bg-color);
   border-radius: var(--border-radius-sm);
