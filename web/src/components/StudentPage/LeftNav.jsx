@@ -9,7 +9,6 @@ export default function LeftNav() {
         </div>
         <p>Ikaw Diayni</p>
       </div>
-      <div className="divider"></div>
     </div>
   );
 }

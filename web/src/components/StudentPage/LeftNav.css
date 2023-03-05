@@ -1,6 +1,5 @@
 .left-nav-container {
   flex-direction: column;
-  height: var(--md-height);
   width: 25vw;
   background-color: var(--container-bg-color);
   border-radius: var(--border-radius-sm);
@@ -22,4 +21,11 @@
   width: 100%;
   object-fit: cover;
   object-position: top;
+}
+
+@media (orientation: portrait) {
+  .left-nav-container {
+    display: block;
+    width: 90vw;
+  }
 }
