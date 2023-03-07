@@ -24,6 +24,12 @@
   background-color: var(--main-bg-color);
 }
 
+header {
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
 main {
   color: var(--main-fg-color);
   padding: 5vh 5vw;

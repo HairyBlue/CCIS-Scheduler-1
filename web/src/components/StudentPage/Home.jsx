@@ -1,6 +1,7 @@
-import "./Home.css";
 import LeftNav from "./LeftNav";
 import Schedule from "./Schedule";
+
+import "./Home.css";
 
 export default function Home() {
   return (

@@ -1,13 +1,13 @@
 import Home from "./components/StudentPage/Home";
+import Layout from "./layouts/Main";
+
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <main>
-        <Home />
-      </main>
-    </div>
+    <Layout>
+      <Home />
+    </Layout>
   );
 }
 
