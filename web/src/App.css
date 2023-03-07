@@ -19,12 +19,12 @@
   --md-height: 90vh;
 }
 
-.App {
+#root {
   height: 100vh;
+  background-color: var(--main-bg-color);
 }
 
 main {
-  background-color: var(--main-bg-color);
   color: var(--main-fg-color);
   padding: 5vh 5vw;
 }
@@ -35,4 +35,10 @@ main {
 
 .divider {
   border-top: 1px solid var(--border-color);
+}
+
+@media (orientation: portrait) {
+  .container {
+    width: 90vw;
+  }
 }

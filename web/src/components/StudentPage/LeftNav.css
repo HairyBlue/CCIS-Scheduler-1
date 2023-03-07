@@ -22,10 +22,3 @@
   object-fit: cover;
   object-position: top;
 }
-
-@media (orientation: portrait) {
-  .left-nav-container {
-    display: block;
-    width: 90vw;
-  }
-}
