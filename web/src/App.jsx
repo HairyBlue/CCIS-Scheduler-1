@@ -1,14 +1,9 @@
-import Home from "./components/StudentPage/Home";
-import Layout from "./layouts/Main";
+import Home from "./components/Home";
 
 import "./App.css";
 
 function App() {
-  return (
-    <Layout>
-      <Home />
-    </Layout>
-  );
+  return <Home />;
 }
 
 export default App;

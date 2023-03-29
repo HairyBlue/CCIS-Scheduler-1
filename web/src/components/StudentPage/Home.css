@@ -1,9 +1,0 @@
-.student-homepage-container {
-  gap: 10px;
-}
-
-@media (orientation: portrait) {
-  .student-homepage-container {
-    flex-direction: column;
-  }
-}

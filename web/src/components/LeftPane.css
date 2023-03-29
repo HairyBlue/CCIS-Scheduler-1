@@ -1,0 +1,68 @@
+.leftpane-container {
+  gap: 2rem;
+  padding: var(--padded-md);
+  width: 20vw;
+  height: 90vh;
+  font-size: calc(0.5rem + 0.5vw);
+  justify-content: start;
+  border-radius: var(--border-radius-container);
+}
+
+.leftpane-container > button {
+  all: unset;
+  margin: 0 auto;
+  margin-top: auto;
+  border: 1px solid var(--grey-color);
+  text-align: center;
+  padding: var(--padded-sm);
+  border-radius: var(--border-radius-container);
+  width: fit-content;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.leftpane-container > button:hover {
+  background-color: var(--bg-main-color);
+  color: var(--fg-main-color);
+}
+
+.options-container {
+  gap: 1.5rem;
+}
+
+.options-container > *:hover {
+  cursor: pointer;
+}
+
+.upcoming-meetings-container,
+.archived-meetings-container {
+  align-items: center;
+}
+
+.img-container.return {
+  animation: return90 0.3s ease-in-out both alternate;
+}
+
+.img-container.rotate {
+  animation: rotate90 0.3s ease-in-out both alternate;
+}
+
+@keyframes rotate90 {
+  from {
+    transform: rotate(180deg);
+  }
+
+  to {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes return90 {
+  from {
+    transform: rotate(270deg);
+  }
+
+  to {
+    transform: rotate(180deg);
+  }
+}

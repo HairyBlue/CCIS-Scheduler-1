@@ -1,0 +1,49 @@
+.rightpane-container {
+  flex: 2;
+  gap: 0.5rem;
+}
+
+.rightpane-header {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--padded-md);
+  border-radius: var(--border-radius-container);
+  font-weight: bolder;
+}
+
+.rightpane-container {
+  border-radius: var(--border-radius-container);
+}
+
+.addNewMeeting-button-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border-radius: var(--border-radius-container);
+  padding: var(--padded-sm);
+  border: 1px dashed var(--bg-main-color);
+  transition: 0.3s ease-in-out;
+}
+
+.addNewMeeting-button-container:hover {
+  background-color: var(--bg-main-color);
+}
+
+.addNewMeeting-button-container > button {
+  border: none;
+  background-color: transparent;
+  color: var(--grey-color);
+}
+
+.addNewMeeting-button-container:hover > button {
+  color: var(--fg-main-color);
+}
+
+.addNewMeeting-button-container:hover img {
+  filter: invert(1);
+}
+
+.addNewMeeting-button-container > .img-container {
+  width: 18px;
+  height: 18px;
+}
