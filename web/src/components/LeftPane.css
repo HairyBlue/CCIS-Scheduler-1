@@ -6,6 +6,9 @@
   font-size: calc(0.5rem + 0.5vw);
   justify-content: start;
   border-radius: var(--border-radius-container);
+  position: sticky;
+  top: 0;
+  left: 0;
 }
 
 .leftpane-container > button {

@@ -47,3 +47,52 @@
   width: 18px;
   height: 18px;
 }
+
+.rightpane-content-container {
+  padding: var(--padded-md);
+  overflow: scroll;
+  gap: 1rem;
+}
+
+.meeting-card-container {
+  justify-content: space-between;
+  border: 1px solid var(--bg-main-color);
+  padding: var(--padded-md);
+  border-radius: var(--border-radius-container);
+}
+
+.leftpane-card {
+  gap: 0.5rem;
+}
+
+.leftpane-card > p:nth-child(2) {
+  width: 20vw;
+  color: var(--grey-color);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.time-tracker-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.time-tracker-container > .img-container {
+  width: 16px;
+  height: 16px;
+}
+
+.rightpane-card {
+  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: auto;
+}
+
+.status-indicator-container {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: yellow;
+}

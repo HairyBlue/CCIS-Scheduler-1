@@ -46,3 +46,7 @@ img {
   width: 24px;
   height: 24px;
 }
+
+.flex {
+  flex: 1;
+}
