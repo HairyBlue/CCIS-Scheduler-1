@@ -8,22 +8,24 @@ const DropdownMenu = ({ className, name }) => {
 
   return (
     <div
-      className={`${className} container`}
+      className={`${className} dropdown-container container`}
       onClick={() => {
         setShow(!show);
       }}
     >
-      <h3>{name}</h3>
-      <div className={`img-container ${show ? "rotate" : "return"}`}>
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/9455/9455202.png"
-          alt="angle-brackets"
-        />
+      <div className="dropdown-menu-container container">
+        <h3>{name}</h3>
+        <div className={`img-container ${show ? "rotate" : "return"}`}>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/9455/9455202.png"
+            alt="angle-brackets"
+          />
+        </div>
       </div>
-      <ul>
-        {
-          // To included with contents of the upcoming meetings
-        }
+      <ul className={`dropdown-items-container ${show ? "flex-show" : "hide"}`}>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
       </ul>
     </div>
   );
