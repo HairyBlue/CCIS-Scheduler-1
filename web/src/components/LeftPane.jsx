@@ -1,4 +1,6 @@
 import { useState } from "react";
+
+import { GiHamburgerMenu } from "react-icons/gi";
 import "./LeftPane.css";
 
 const DropdownMenu = ({ className, name }) => {
@@ -29,9 +31,14 @@ const DropdownMenu = ({ className, name }) => {
 
 export default function LeftPane() {
   return (
-    <div className="leftpane-container container column border-style">
+    <div className="leftpane-container container column border-style flex">
       <div className="header-container container">
         <h3>Scheduler</h3>
+      </div>
+      <div className="dropdown-icon-container">
+        <button>
+          <GiHamburgerMenu size={18} />
+        </button>
       </div>
       <div className="options-container container column">
         <DropdownMenu

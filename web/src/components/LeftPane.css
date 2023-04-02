@@ -69,3 +69,38 @@
     transform: rotate(180deg);
   }
 }
+
+.dropdown-icon-container {
+  display: none;
+}
+
+@media (orientation: portrait) {
+  .leftpane-container {
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .dropdown-icon-container {
+    display: flex;
+  }
+
+  .leftpane-container.container.column {
+    flex-direction: row;
+  }
+
+  .leftpane-container > .options-container,
+  .leftpane-container > button {
+    display: none;
+  }
+
+  .dropdown-icon-container > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+  }
+}

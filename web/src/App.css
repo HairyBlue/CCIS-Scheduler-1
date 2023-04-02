@@ -42,6 +42,14 @@ img {
   box-shadow: 0 4px 6px 0 var(--grey-color);
 }
 
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
 .img-container {
   width: 24px;
   height: 24px;
