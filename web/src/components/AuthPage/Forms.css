@@ -1,0 +1,51 @@
+.login-form-container,
+.signup-form-container {
+  padding: 0 35vw;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.login-form-container > form,
+.signup-form-container > form {
+  border-radius: var(--border-radius-container);
+  padding: 20px;
+  gap: 1.5rem;
+}
+
+.login-input-container > input,
+.signup-input-container > input {
+  font-size: calc(0.5rem + 0.6vw);
+  border: 1px solid var(--grey-color);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius-container);
+}
+
+.login-form-container > form > button,
+.signup-form-container > form > button {
+  padding: 10px;
+  border: none;
+  border-radius: var(--border-radius-container);
+}
+
+.signup-form-container > form > p:first-child {
+  color: green;
+}
+
+.redirect-signup-container {
+  gap: 1rem;
+}
+
+.redirect-signup-container > a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.redirect-login-container {
+  gap: 1rem;
+}
+
+.redirect-login-container > a {
+  text-decoration: none;
+  color: #000000;
+}
