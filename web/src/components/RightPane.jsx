@@ -39,7 +39,7 @@ export default function RightPane() {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday",
+    "Saturday"
   ];
 
   const month = [
@@ -54,7 +54,7 @@ export default function RightPane() {
     "September",
     "October",
     "November",
-    "December",
+    "December"
   ];
 
   const date = new Date();

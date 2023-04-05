@@ -1,9 +1,7 @@
 import LeftPane from "./LeftPane";
-import RightPane from "./RighPane";
+import RightPane from "./RightPane";
 
-import "./Home.css";
-
-export default function Home() {
+export default function Dashboard() {
   return (
     <main>
       <LeftPane />

@@ -1,15 +1,21 @@
+import { resolve } from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
+const root = resolve(__dirname, "src");
+const outDir = resolve(__dirname, "dist");
+
 // https://vitejs.dev/config/
 export default defineConfig({
+  root,
   plugins: [react()],
   build: {
-    // generate manifest.json in outDir
-    manifest: true,
+    outDir,
+    emptyOutDir: true,
     rollupOptions: {
-      // overwrite default .html entry
-      input: "./src/main.jsx"
+      input: {
+        main: resolve(root, "index.html")
+      }
     }
   },
   server: {
