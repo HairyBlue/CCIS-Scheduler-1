@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
-import "./Main.css";
-
 const Main = () => {
   const login = useSelector((state) => state.user.login);
   const navigate = useNavigate();
