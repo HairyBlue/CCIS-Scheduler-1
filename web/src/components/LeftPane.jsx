@@ -31,7 +31,7 @@ const DropdownMenu = ({ className, name }) => {
   );
 };
 
-export default function LeftPane() {
+const LeftPane = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
@@ -69,4 +69,6 @@ export default function LeftPane() {
       </div>
     </div>
   );
-}
+};
+
+export default LeftPane;

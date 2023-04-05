@@ -31,7 +31,7 @@ const MeetingCard = ({ title, description }) => {
   );
 };
 
-export default function RightPane() {
+const RightPane = () => {
   const weekday = [
     "Sunday",
     "Monday",
@@ -131,4 +131,6 @@ export default function RightPane() {
       </div>
     </div>
   );
-}
+};
+
+export default RightPane;

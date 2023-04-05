@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 import "./Main.css";
 
-export default function Main() {
+const Main = () => {
   const login = useSelector((state) => state.user.login);
   const navigate = useNavigate();
 
@@ -20,4 +20,6 @@ export default function Main() {
       <Outlet />
     </>
   );
-}
+};
+
+export default Main;
