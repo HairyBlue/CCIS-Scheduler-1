@@ -1,24 +1,13 @@
-import { resolve } from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-const root = resolve(__dirname, "src");
-const outDir = resolve(__dirname, "dist");
-
 // https://vitejs.dev/config/
 export default defineConfig({
-  root,
   plugins: [react()],
   build: {
-    outDir,
-    emptyOutDir: true,
+    manifest: true,
     rollupOptions: {
-      input: {
-        main: resolve(root, "index.html")
-      }
+      input: "./src/main.jsx"
     }
-  },
-  server: {
-    origin: "http://localhost:5000"
   }
 });

@@ -11,6 +11,12 @@ export default function Signup() {
 
   const [message, setMessage] = useState("");
 
+  useEffect(() => {
+    console.log(
+      `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/signup`
+    );
+  }, []);
+
   const signup = async () => {
     const user = {
       fullname,
@@ -33,6 +39,7 @@ export default function Signup() {
     );
     const data = await response.json();
 
+    // console.log(data);
     setMessage(data.success_message);
   };
 
@@ -46,7 +53,7 @@ export default function Signup() {
     <div className="signup-form-container container column">
       <form
         className="container column border-style"
-        action={`${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/signup`}
+        action=""
         method="POST"
         onSubmit={validateForm}
       >
