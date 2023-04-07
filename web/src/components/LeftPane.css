@@ -8,6 +8,7 @@
   position: sticky;
   top: 0;
   left: 0;
+  width: 20vw;
 }
 
 .leftpane-container > button {
@@ -122,8 +123,9 @@
   display: none;
 }
 
-@media (orientation: portrait) {
+@media screen and (orientation: portrait) {
   .leftpane-container {
+    flex: 1;
     position: relative;
     justify-content: space-between;
     align-items: center;

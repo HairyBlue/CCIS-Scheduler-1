@@ -35,7 +35,7 @@ const LeftPane = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <div className="leftpane-container container column border-style flex">
+    <div className="leftpane-container container column border-style">
       <div className="header-container container">
         <h3>Scheduler</h3>
       </div>
