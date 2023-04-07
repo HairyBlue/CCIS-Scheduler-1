@@ -9,6 +9,7 @@ import "./Forms.css";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,9 +37,13 @@ export default function Login() {
 
     console.log(success_message, student);
 
-    dispatch(setUser(student));
-    dispatch(setLogin(true));
-    navigate("/dashboard");
+    if (student !== undefined) {
+      dispatch(setUser(student));
+      dispatch(setLogin(true));
+      navigate("/dashboard");
+    } else {
+      setMessage("Invalid username or password, please try again");
+    }
   };
 
   const validateForm = (e) => {
@@ -55,6 +60,7 @@ export default function Login() {
         method="POST"
         onSubmit={validateForm}
       >
+        {message && <h3>{message}</h3>}
         <div className="login-input-container container column">
           <input
             type="text"

@@ -10,7 +10,7 @@ export default function Signup() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState(null);
 
   const navigate = useNavigate();
 
@@ -28,6 +28,7 @@ export default function Signup() {
       `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/signup`,
       {
         method: "POST",
+        credentials: "include",
         headers: {
           "Content-Type": "application/json"
         },
@@ -36,8 +37,8 @@ export default function Signup() {
     );
     const data = await response.json();
 
-    setMessage(data.success_message);
-
+    const { success_message } = data;
+    setMessage(success_message);
     navigate("/login");
   };
 
@@ -55,7 +56,7 @@ export default function Signup() {
         method="POST"
         onSubmit={validateForm}
       >
-        {message !== undefined ? <p>{message}</p> : null}
+        {message && <p>{message}</p>}
         <div className="signup-input-container container column">
           <input
             type="text"

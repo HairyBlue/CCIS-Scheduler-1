@@ -13,7 +13,8 @@ export default function VerifyAcc() {
         import.meta.env.VITE_REACT_APP_BASE_URL
       }/api/student/verify-signup/${id}/${verify_token}`,
       {
-        method: "POST"
+        method: "POST",
+        credentials: "include"
       }
     );
 
