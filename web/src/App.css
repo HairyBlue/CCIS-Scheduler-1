@@ -21,7 +21,7 @@
 
 main {
   display: flex;
-  padding: 20px 10vw;
+  justify-content: center;
   gap: 0.5rem;
 }
 
