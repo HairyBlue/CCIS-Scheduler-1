@@ -11,10 +11,12 @@ import Signup from "./components/AuthPage/Signup";
 import Dashboard from "./components/Dashboard";
 
 import "./App.css";
+import VerifyAcc from "./components/AuthPage/VerifyAcc";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
+      <Route path="verify-account/:id/:verify_token" element={<VerifyAcc />} />
       <Route path="dashboard" element={<Dashboard />} />
       <Route path="login" element={<Login />} />
       <Route path="signup" element={<Signup />} />

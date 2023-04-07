@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [fullname, setFullname] = useState("");
@@ -11,11 +12,7 @@ export default function Signup() {
 
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    console.log(
-      `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/signup`
-    );
-  }, []);
+  const navigate = useNavigate();
 
   const signup = async () => {
     const user = {
@@ -39,8 +36,9 @@ export default function Signup() {
     );
     const data = await response.json();
 
-    // console.log(data);
     setMessage(data.success_message);
+
+    navigate("/login");
   };
 
   const validateForm = (e) => {

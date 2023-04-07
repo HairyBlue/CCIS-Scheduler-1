@@ -1,6 +1,8 @@
-import { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+
+import { setUser, setLogin } from "../features/Profile/userSlice";
 
 import "./Forms.css";
 
@@ -8,11 +10,14 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const login = async () => {
-    const user = JSON.stringify({
+    const user = {
       username,
       password
-    });
+    };
 
     const response = await fetch(
       `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/login`,
@@ -22,7 +27,7 @@ export default function Login() {
           "Content-Type": "application/json"
         },
         credentials: "include",
-        body: user
+        body: JSON.stringify(user)
       }
     );
     const data = await response.json();
@@ -30,6 +35,10 @@ export default function Login() {
     const { success_message, student } = data;
 
     console.log(success_message, student);
+
+    dispatch(setUser(student));
+    dispatch(setLogin(true));
+    navigate("/dashboard");
   };
 
   const validateForm = (e) => {
