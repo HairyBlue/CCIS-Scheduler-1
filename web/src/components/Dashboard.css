@@ -1,0 +1,10 @@
+.dashboard-container {
+  gap: 0.5rem;
+  padding: 20px 3vw;
+}
+
+@media screen and (orientation: portrait) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+}
