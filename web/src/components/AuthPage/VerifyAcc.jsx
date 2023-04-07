@@ -11,7 +11,10 @@ export default function VerifyAcc() {
     const response = await fetch(
       `${
         import.meta.env.VITE_REACT_APP_BASE_URL
-      }/api/student/verify-signup/${id}/${verify_token}`
+      }/api/student/verify-signup/${id}/${verify_token}`,
+      {
+        method: "POST"
+      }
     );
 
     const data = await response.json();
