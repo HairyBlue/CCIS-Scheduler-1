@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./RightPane.css";
+import { useNavigate } from "react-router-dom";
 
 const MeetingCard = ({ title, description }) => {
   const [time, setTime] = useState(0);
@@ -31,7 +31,8 @@ const MeetingCard = ({ title, description }) => {
   );
 };
 
-const RightPane = () => {
+const MeetingList = () => {
+  const navigate = useNavigate();
   const weekday = [
     "Sunday",
     "Monday",
@@ -58,9 +59,8 @@ const RightPane = () => {
   ];
 
   const date = new Date();
-
   return (
-    <div className="rightpane-container container column">
+    <>
       <div className="rightpane-header container border-style">
         <p>
           Today <br />
@@ -76,7 +76,13 @@ const RightPane = () => {
               alt="add-button"
             />
           </div>
-          <button>New Meeting</button>
+          <button
+            onClick={(e) => {
+              navigate("/dashboard/meetings-list/dashboard-meeting-form");
+            }}
+          >
+            New Meeting
+          </button>
         </div>
       </div>
       <div className="rightpane-content-container container column border-style flex">
@@ -129,8 +135,8 @@ const RightPane = () => {
           description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend luctus fringilla. Sed in eros velit. Phasellus sed aliquet eros. Fusce ut orci convallis risus auctor venenatis nec at augue."
         />
       </div>
-    </div>
+    </>
   );
 };
 
-export default RightPane;
+export default MeetingList;

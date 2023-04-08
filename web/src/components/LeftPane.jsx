@@ -44,6 +44,8 @@ const LeftPane = () => {
   const signoutUser = async () => {
     const headers = new Headers();
 
+    console.log("Value of user is", user);
+
     headers.append("Content-Type", "application/json");
     headers.append("Authorization", `Bearer ${user.student.token}`);
 

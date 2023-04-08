@@ -48,7 +48,7 @@ export default function Login() {
 
       localStorage.setItem("user", JSON.stringify(user));
 
-      navigate("/dashboard");
+      navigate("/dashboard/meetings-list");
     } else {
       setMessage("Invalid username or password, please try again");
     }

@@ -6,18 +6,30 @@ import {
 } from "react-router-dom";
 
 import Layout from "./components/layouts/Main";
-import Login from "./components/AuthPage/Login";
-import Signup from "./components/AuthPage/Signup";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/layouts/Dashboard";
+import Login from "./components/pages/Login";
+import Signup from "./components/pages/Signup";
+import VerifyAcc from "./components/pages/VerifyAcc";
+
+import RightPane from "./components/layouts/RightPane";
+import MeetingList from "./components/MeetingList";
+import MeetingForm from "./components/MeetingForm";
 
 import "./App.css";
-import VerifyAcc from "./components/AuthPage/VerifyAcc";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route path="/" element={<Layout />}>
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="dashboard" element={<Dashboard />}>
+          <Route path="meetings-list" element={<RightPane />}>
+            <Route index element={<MeetingList />}></Route>
+            <Route
+              path="dashboard-meeting-form"
+              element={<MeetingForm />}
+            ></Route>
+          </Route>
+        </Route>
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
       </Route>
