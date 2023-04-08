@@ -38,7 +38,6 @@ export default function Login() {
     console.log(success_message, student);
 
     if (student !== undefined) {
-      localStorage.clear();
       dispatch(setUser(student));
       dispatch(setLogin(true));
 

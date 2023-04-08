@@ -1,6 +1,9 @@
 import { useState } from "react";
-
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { setLogin, setUser } from "./features/Profile/userSlice";
 import "./LeftPane.css";
 
 const DropdownMenu = ({ className, name }) => {
@@ -33,6 +36,43 @@ const DropdownMenu = ({ className, name }) => {
 
 const LeftPane = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const user = useSelector((state) => state.user.user);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const signoutUser = async () => {
+    const headers = new Headers();
+
+    headers.append("Content-Type", "application/json");
+    headers.append("Authorization", user.token);
+
+    const response = await fetch(
+      `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/signout`,
+      {
+        method: "PATCH",
+        headers
+      }
+    );
+
+    const { success_message } = await response.json();
+
+    if (success_message !== undefined) {
+      console.log(success_message);
+
+      dispatch(setLogin(false));
+      dispatch(setUser({}));
+      localStorage.clear();
+
+      navigate("/login");
+    }
+  };
+
+  const signoutUserHandler = (e) => {
+    e.preventDefault();
+
+    signoutUser();
+  };
 
   return (
     <div className="leftpane-container container column border-style">
@@ -55,7 +95,7 @@ const LeftPane = () => {
         />
         <DropdownMenu className="archived-meetings-container" name="Archived" />
       </div>
-      <button>Logout</button>
+      <button onClick={signoutUserHandler}>Logout</button>
       <div
         className={`rightpane-dropdown-container ${
           showMenu ? "flex-show" : "hide"
