@@ -4,12 +4,15 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
 const Main = () => {
-  const login = useSelector((state) => state.user.login);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!login) {
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    if (user === null || !user?.login) {
       navigate("/login");
+    } else {
+      navigate("/dashboard");
     }
   }, []);
 

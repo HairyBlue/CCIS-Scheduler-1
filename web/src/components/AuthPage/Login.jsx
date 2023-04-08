@@ -38,8 +38,17 @@ export default function Login() {
     console.log(success_message, student);
 
     if (student !== undefined) {
+      localStorage.clear();
       dispatch(setUser(student));
       dispatch(setLogin(true));
+
+      const user = {
+        student,
+        login: true
+      };
+
+      localStorage.setItem("user", JSON.stringify(user));
+
       navigate("/dashboard");
     } else {
       setMessage("Invalid username or password, please try again");
