@@ -45,7 +45,7 @@ const LeftPane = () => {
     const headers = new Headers();
 
     headers.append("Content-Type", "application/json");
-    headers.append("Authorization", user.token);
+    headers.append("Authorization", `Bearer ${user.student.token}`);
 
     const response = await fetch(
       `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/signout`,
@@ -61,7 +61,7 @@ const LeftPane = () => {
       console.log(success_message);
 
       dispatch(setLogin(false));
-      dispatch(setUser({}));
+      dispatch(setUser(null));
       localStorage.clear();
 
       navigate("/login");
