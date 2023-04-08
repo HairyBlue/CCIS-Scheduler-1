@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import { setUser, setLogin } from "../features/Profile/userSlice";
@@ -10,6 +10,8 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(null);
+
+  const user = useSelector((state) => state.user.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,14 +43,24 @@ export default function Login() {
       dispatch(setUser(student));
       dispatch(setLogin(true));
 
+      console.log(
+        "This is the value of student object result from backend",
+        student
+      );
+
       const user = {
-        student,
+        ...student,
         login: true
       };
 
+      console.log(
+        "This is the value of user object result from making a new object",
+        user
+      );
+
       localStorage.setItem("user", JSON.stringify(user));
 
-      navigate("/dashboard/meetings-list");
+      navigate("/dashboard/meetings-list/");
     } else {
       setMessage("Invalid username or password, please try again");
     }

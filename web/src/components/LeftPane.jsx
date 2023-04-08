@@ -44,10 +44,8 @@ const LeftPane = () => {
   const signoutUser = async () => {
     const headers = new Headers();
 
-    console.log("Value of user is", user);
-
     headers.append("Content-Type", "application/json");
-    headers.append("Authorization", `Bearer ${user.student.token}`);
+    headers.append("Authorization", `Bearer ${user.token}`);
 
     const response = await fetch(
       `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/signout`,

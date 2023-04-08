@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import getMeetingsForCreator from "../api/getMeetings";
 
 const MeetingCard = ({ title, description }) => {
   const [time, setTime] = useState(0);
@@ -32,7 +34,19 @@ const MeetingCard = ({ title, description }) => {
 };
 
 const MeetingList = () => {
+  const [meetingsList, setMeetingsList] = useState([]);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    (async () => {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const { meetings } = await getMeetingsForCreator(user);
+
+      setMeetingsList(meetings);
+    })();
+  }, []);
+
   const weekday = [
     "Sunday",
     "Monday",
@@ -86,54 +100,14 @@ const MeetingList = () => {
         </div>
       </div>
       <div className="rightpane-content-container container column border-style flex">
-        <MeetingCard
-          title={"Meeting Name"}
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend luctus fringilla. Sed in eros velit. Phasellus sed aliquet eros. Fusce ut orci convallis risus auctor venenatis nec at augue."
-        />
-        <MeetingCard
-          title={"Meeting Name"}
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend luctus fringilla. Sed in eros velit. Phasellus sed aliquet eros. Fusce ut orci convallis risus auctor venenatis nec at augue."
-        />
-        <MeetingCard
-          title={"Meeting Name"}
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend luctus fringilla. Sed in eros velit. Phasellus sed aliquet eros. Fusce ut orci convallis risus auctor venenatis nec at augue."
-        />
-        <MeetingCard
-          title={"Meeting Name"}
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend luctus fringilla. Sed in eros velit. Phasellus sed aliquet eros. Fusce ut orci convallis risus auctor venenatis nec at augue."
-        />
-        <MeetingCard
-          title={"Meeting Name"}
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend luctus fringilla. Sed in eros velit. Phasellus sed aliquet eros. Fusce ut orci convallis risus auctor venenatis nec at augue."
-        />
-        <MeetingCard
-          title={"Meeting Name"}
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend luctus fringilla. Sed in eros velit. Phasellus sed aliquet eros. Fusce ut orci convallis risus auctor venenatis nec at augue."
-        />
-        <MeetingCard
-          title={"Meeting Name"}
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend luctus fringilla. Sed in eros velit. Phasellus sed aliquet eros. Fusce ut orci convallis risus auctor venenatis nec at augue."
-        />
-        <MeetingCard
-          title={"Meeting Name"}
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend luctus fringilla. Sed in eros velit. Phasellus sed aliquet eros. Fusce ut orci convallis risus auctor venenatis nec at augue."
-        />
-        <MeetingCard
-          title={"Meeting Name"}
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend luctus fringilla. Sed in eros velit. Phasellus sed aliquet eros. Fusce ut orci convallis risus auctor venenatis nec at augue."
-        />
-        <MeetingCard
-          title={"Meeting Name"}
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend luctus fringilla. Sed in eros velit. Phasellus sed aliquet eros. Fusce ut orci convallis risus auctor venenatis nec at augue."
-        />
-        <MeetingCard
-          title={"Meeting Name"}
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend luctus fringilla. Sed in eros velit. Phasellus sed aliquet eros. Fusce ut orci convallis risus auctor venenatis nec at augue."
-        />
-        <MeetingCard
-          title={"Meeting Name"}
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eleifend luctus fringilla. Sed in eros velit. Phasellus sed aliquet eros. Fusce ut orci convallis risus auctor venenatis nec at augue."
-        />
+        {meetingsList &&
+          meetingsList.map((meeting, index) => (
+            <MeetingCard
+              key={index}
+              title={meeting.title}
+              description={meeting.description}
+            />
+          ))}
       </div>
     </>
   );
