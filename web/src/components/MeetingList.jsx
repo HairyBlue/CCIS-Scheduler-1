@@ -77,14 +77,16 @@ const MeetingList = () => {
   ];
 
   const date = new Date();
+
+  const today = `${weekday[date.getUTCDay()]}, ${
+    month[date.getUTCMonth()]
+  }, ${date.getUTCDate()}, ${date.getUTCFullYear()}`;
   return (
     <>
       <div className="rightpane-header container border-style">
         <p>
           Today <br />
-          {`${weekday[date.getUTCDay()]}, ${
-            month[date.getUTCMonth()]
-          }, ${date.getUTCDate()}, ${date.getUTCFullYear()}`}
+          {today}
         </p>
 
         <button

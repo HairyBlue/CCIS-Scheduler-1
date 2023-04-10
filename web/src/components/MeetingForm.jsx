@@ -19,6 +19,8 @@ export default function MeetingForm() {
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
 
+  const today = new Date().toJSON().slice(0, 10);
+
   const createMeeting = async () => {
     setLoading(true);
 
@@ -112,12 +114,14 @@ export default function MeetingForm() {
           type="date"
           name="meeting-date"
           id="meeting-date"
+          min={today}
           required
           onChange={(e) => {
             setDate(e.target.value);
             const formattedDate = new Date(e.target.value);
             setDay(parseInt(formattedDate.getDate()));
           }}
+          value={today}
         />
       </div>
       <div className="input-container container column">
@@ -129,6 +133,8 @@ export default function MeetingForm() {
           onChange={(e) => {
             setStart(e.target.value);
           }}
+          required
+          value="08:00"
         />
       </div>
       <div className="input-container container column">
@@ -140,6 +146,8 @@ export default function MeetingForm() {
           onChange={(e) => {
             setEnd(e.target.value);
           }}
+          required
+          value="18:00"
         />
       </div>
       <select
@@ -148,6 +156,7 @@ export default function MeetingForm() {
         onChange={(e) => {
           setVenue(e.target.value);
         }}
+        required
       >
         <option value="">--Please select a venue--</option>
         <option value="1">Miserior Grounds</option>
