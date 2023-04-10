@@ -1,6 +1,8 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 import Loader from "./Loader";
 import "./MeetingForm.css";
@@ -19,7 +21,7 @@ export default function MeetingForm() {
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
 
-  const today = new Date().toJSON().slice(0, 10);
+  const today = moment().format("YYYY-MM-DD");
 
   const createMeeting = async () => {
     setLoading(true);

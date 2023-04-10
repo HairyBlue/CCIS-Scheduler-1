@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Loader from "./Loader";
+import moment from "moment";
 
+import Loader from "./Loader";
 import getMeetingsForCreator from "../api/getMeetings";
 
 const MeetingCard = ({ title, description }) => {
@@ -51,42 +52,12 @@ const MeetingList = () => {
     })();
   }, []);
 
-  const weekday = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday"
-  ];
-
-  const month = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ];
-
-  const date = new Date();
-
-  const today = `${weekday[date.getUTCDay()]}, ${
-    month[date.getUTCMonth()]
-  }, ${date.getUTCDate()}, ${date.getUTCFullYear()}`;
   return (
     <>
       <div className="rightpane-header container border-style">
         <p>
           Today <br />
-          {today}
+          {moment().format("LLLL")}
         </p>
 
         <button
@@ -111,7 +82,6 @@ const MeetingList = () => {
             Wow such empty...
           </div>
         )}
-        {undefined}
         {meetingsList ? (
           meetingsList.map((meeting, index) => (
             <MeetingCard
@@ -121,9 +91,7 @@ const MeetingList = () => {
             />
           ))
         ) : (
-          <div className="container center-content max-size spinner">
-            <Loader />
-          </div>
+          <Loader className="container center-content max-size " />
         )}
       </div>
     </>
