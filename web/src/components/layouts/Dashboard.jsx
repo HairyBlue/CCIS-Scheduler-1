@@ -1,8 +1,8 @@
-import LeftPane from "../LeftPane";
-import RightPane from "./RightPane";
-import "./Dashboard.css";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+
+import Sidebar from "../Sidebar";
+import "./Dashboard.css";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard-container container flex">
-      <LeftPane />
+      <Sidebar />
       <Outlet />
     </div>
   );

@@ -105,6 +105,12 @@ const MeetingList = () => {
         </div>
       </div>
       <div className="rightpane-content-container container column border-style flex">
+        {meetingsList?.length === 0 && (
+          <div className="container center-content max-size">
+            Wow such empty...
+          </div>
+        )}
+        {undefined}
         {meetingsList ? (
           meetingsList.map((meeting, index) => (
             <MeetingCard

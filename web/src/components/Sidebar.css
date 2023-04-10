@@ -1,4 +1,5 @@
-.leftpane-container {
+.sidebar {
+  flex: 1;
   gap: 2rem;
   padding: var(--padded-md);
   height: 90vh;
@@ -8,10 +9,10 @@
   position: sticky;
   top: 0;
   left: 0;
-  width: 20vw;
+  max-width: 20vw;
 }
 
-.leftpane-container > button {
+.sidebar > button {
   all: unset;
   margin: 0 auto;
   margin-top: auto;
@@ -24,7 +25,7 @@
   cursor: pointer;
 }
 
-.leftpane-container > button:hover {
+.sidebar > button:hover {
   background-color: var(--bg-main-color);
   color: var(--fg-main-color);
 }
@@ -124,8 +125,7 @@
 }
 
 @media screen and (orientation: portrait) {
-  .leftpane-container {
-    flex: 1;
+  .sidebar {
     position: relative;
     justify-content: space-between;
     align-items: center;
@@ -141,12 +141,12 @@
     display: flex;
   }
 
-  .leftpane-container.container.column {
+  .sidebar.container.column {
     flex-direction: row;
   }
 
-  .leftpane-container > .options-container,
-  .leftpane-container > button {
+  .sidebar > .options-container,
+  .sidebar > button {
     display: none;
   }
 

@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 import { setLogin, setUser } from "./features/Profile/userSlice";
-import "./LeftPane.css";
+import Loader from "./Loader";
+import "./Sidebar.css";
 
 const DropdownMenu = ({ className, name }) => {
   const [show, setShow] = useState(false);
@@ -36,12 +37,14 @@ const DropdownMenu = ({ className, name }) => {
 
 const LeftPane = () => {
   const [showMenu, setShowMenu] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const user = useSelector((state) => state.user.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const signoutUser = async () => {
+    setLoading(true);
     const headers = new Headers();
 
     headers.append("Content-Type", "application/json");
@@ -64,6 +67,7 @@ const LeftPane = () => {
       dispatch(setUser(null));
       localStorage.clear();
 
+      setLoading(false);
       navigate("/login");
     }
   };
@@ -75,7 +79,7 @@ const LeftPane = () => {
   };
 
   return (
-    <div className="leftpane-container container column border-style">
+    <div className="sidebar container column border-style">
       <div className="header-container container">
         <h3>Scheduler</h3>
       </div>
@@ -95,7 +99,9 @@ const LeftPane = () => {
         />
         <DropdownMenu className="archived-meetings-container" name="Archived" />
       </div>
-      <button onClick={signoutUserHandler}>Logout</button>
+      <button onClick={signoutUserHandler} disabled={isLoading}>
+        {isLoading ? <Loader width={16} height={16} /> : "Log out"}
+      </button>
       <div
         className={`rightpane-dropdown-container ${
           showMenu ? "flex-show" : "hide"
@@ -104,7 +110,11 @@ const LeftPane = () => {
         <ul>
           <li>Item 1</li>
           <li>Item 2</li>
-          <li>Item 3</li>
+          <li>
+            <button onClick={signoutUserHandler} disabled={isLoading}>
+              {isLoading ? <Loader /> : "Log out"}
+            </button>
+          </li>
         </ul>
       </div>
     </div>
