@@ -107,12 +107,10 @@ const LeftPane = () => {
           showMenu ? "flex-show" : "hide"
         }`}
       >
-        <ul>
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>
+        <ul className="container flex">
+          <li className="container center-content">
             <button onClick={signoutUserHandler} disabled={isLoading}>
-              {isLoading ? <Loader /> : "Log out"}
+              {isLoading ? <Loader stroke="white" /> : "Log out"}
             </button>
           </li>
         </ul>
