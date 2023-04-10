@@ -73,7 +73,7 @@ export default function Login() {
   };
 
   return (
-    <div className="login-form-container container column">
+    <div className="form-container container column">
       <form
         className="container column border-style"
         action=""
@@ -81,7 +81,7 @@ export default function Login() {
         onSubmit={validateForm}
       >
         {message && <h3>{message}</h3>}
-        <div className="login-input-container container column">
+        <div className="input-container container column">
           <input
             type="text"
             name="username"
@@ -93,7 +93,7 @@ export default function Login() {
             }}
           />
         </div>
-        <div className="login-input-container container column">
+        <div className="input-container container column">
           <input
             type="password"
             name="password"

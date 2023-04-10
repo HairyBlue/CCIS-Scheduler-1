@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import Loader from "./Loader";
 import "./MeetingForm.css";
 
 export default function MeetingForm() {
+  const [isLoading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState(0);
@@ -12,11 +14,14 @@ export default function MeetingForm() {
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
   const [venue_id, setVenue] = useState("");
+  const [message, setMessage] = useState("");
 
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
 
   const createMeeting = async () => {
+    setLoading(true);
+
     const meetingInfo = {
       title,
       description,
@@ -45,11 +50,26 @@ export default function MeetingForm() {
 
     console.log(success_message);
 
-    navigate("/dashboard/meetings-list/");
+    setLoading(false);
   };
 
   const validateForm = (e) => {
     e.preventDefault();
+
+    // if (!title || !description) {
+    //   setMessage("Please provide a title and description");
+    //   return;
+    // }
+
+    // if (!date || day === 0 || !start || !end) {
+    //   setMessage("Please provide dates and duration");
+    //   return;
+    // }
+
+    // if (!venue_id) {
+    //   setMessage("Please provide a venue");
+    //   return;
+    // }
 
     createMeeting();
     navigate("/dashboard/meetings-list/");
@@ -57,61 +77,71 @@ export default function MeetingForm() {
 
   return (
     <form
-      className="meeting-form-container container column"
+      className="meeting-form-container form-container container column border-style flex"
       method="POST"
       action=""
       onSubmit={validateForm}
     >
-      <input
-        type="text"
-        placeholder="Meeting name"
-        onChange={(e) => {
-          setTitle(e.target.value);
-        }}
-        required
-      />
-      <textarea
-        name="description"
-        id="description"
-        cols="30"
-        rows="10"
-        placeholder="Enter meeting description"
-        onChange={(e) => {
-          setDescription(e.target.value);
-        }}
-        required
-      ></textarea>
-      <label htmlFor="meeting-date">Meeting Date</label>
-      <input
-        type="date"
-        name="meeting-date"
-        id="meeting-date"
-        required
-        onChange={(e) => {
-          setDate(e.target.value);
-
-          const formattedDate = new Date(e.target.value);
-          setDay(parseInt(formattedDate.getDate()));
-        }}
-      />
-      <label htmlFor="starting_time">Starting Time:</label>
-      <input
-        type="time"
-        name="starting_time"
-        id="starting_time"
-        onChange={(e) => {
-          setStart(e.target.value);
-        }}
-      />
-      <label htmlFor="ending_time">Ending Time:</label>
-      <input
-        type="time"
-        name="ending_time"
-        id="ending_time"
-        onChange={(e) => {
-          setEnd(e.target.value);
-        }}
-      />
+      {message && <h3>{message}</h3>}
+      <div className="input-container container column">
+        <input
+          type="text"
+          placeholder="Meeting name"
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+          required
+        />
+      </div>
+      <div className="input-container container column">
+        <textarea
+          name="description"
+          id="description"
+          cols="30"
+          rows="10"
+          placeholder="Enter meeting description"
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+          required
+        ></textarea>
+      </div>
+      <div className="input-container container column">
+        <label htmlFor="meeting-date">Meeting Date</label>
+        <input
+          type="date"
+          name="meeting-date"
+          id="meeting-date"
+          required
+          onChange={(e) => {
+            setDate(e.target.value);
+            const formattedDate = new Date(e.target.value);
+            setDay(parseInt(formattedDate.getDate()));
+          }}
+        />
+      </div>
+      <div className="input-container container column">
+        <label htmlFor="starting_time">Starting Time:</label>
+        <input
+          type="time"
+          name="starting_time"
+          id="starting_time"
+          onChange={(e) => {
+            setStart(e.target.value);
+          }}
+        />
+      </div>
+      <div className="input-container container column">
+        <label htmlFor="ending_time">Ending Time:</label>
+        <input
+          type="time"
+          name="ending_time"
+          id="ending_time"
+          onChange={(e) => {
+            setEnd(e.target.value);
+          }}
+        />
+      </div>
       <select
         name="meeting_venue"
         id="meeting_venue"
@@ -123,7 +153,19 @@ export default function MeetingForm() {
         <option value="1">Miserior Grounds</option>
         <option value="2">Camp Raymond</option>
       </select>
-      <button type="submit">Add Meeting</button>
+      <div className="button-container container">
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? <Loader width={16} height={16} /> : "Add Meeting"}
+        </button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/dashboard/meetings-list/");
+          }}
+        >
+          Cancel
+        </button>
+      </div>
     </form>
   );
 }

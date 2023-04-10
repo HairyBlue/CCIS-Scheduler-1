@@ -1,2 +1,37 @@
 .meeting-form-container {
+  gap: 1rem;
+  padding: var(--padded-md);
+  align-items: flex-start;
+  border-radius: var(--border-radius-container);
+}
+
+.meeting-form-container textarea {
+  flex: 1;
+  padding: var(--padded-sm);
+  resize: none;
+  border-radius: var(--border-radius-container);
+}
+
+.meeting-form-container select {
+  background-color: transparent;
+  border: 1px solid var(--grey-color);
+  padding: var(--padded-sm);
+  border-radius: var(--border-radius-container);
+}
+
+.button-container {
+  gap: 1.5rem;
+}
+
+.button-container > button {
+  background-color: transparent;
+  padding: var(--padded-sm);
+  border-radius: var(--border-radius-container);
+  border: 1px solid var(--grey-color);
+  transition: 0.3s ease-in;
+}
+
+.button-container > button:hover {
+  color: var(--fg-main-color);
+  background-color: var(--bg-main-color);
 }

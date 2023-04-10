@@ -1,27 +1,30 @@
-.login-form-container,
-.signup-form-container {
+.form-container,
+.form-container {
   align-items: center;
   justify-content: center;
   height: 100vh;
 }
 
-.login-form-container > form,
-.signup-form-container > form {
+.form-container > form,
+.form-container > form {
   border-radius: var(--border-radius-container);
   padding: 20px;
   gap: 1.5rem;
 }
 
-.login-input-container > input,
-.signup-input-container > input {
+.input-container > label {
+  color: var(--dark-grey-color);
+}
+
+.input-container > input {
   font-size: calc(0.5rem + 0.6vw);
   border: 1px solid var(--grey-color);
   padding: 0.5rem 1rem;
   border-radius: var(--border-radius-container);
 }
 
-.login-form-container > form > button,
-.signup-form-container > form > button {
+.form-container > form > button,
+.form-container > form > button {
   padding: 10px;
   border: none;
   border-radius: var(--border-radius-container);

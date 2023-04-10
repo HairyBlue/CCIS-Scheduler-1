@@ -49,7 +49,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="signup-form-container container column">
+    <div className="form-container container column">
       <form
         className="container column border-style"
         action=""
@@ -57,7 +57,7 @@ export default function Signup() {
         onSubmit={validateForm}
       >
         {message && <p>{message}</p>}
-        <div className="signup-input-container container column">
+        <div className="input-container container column">
           <input
             type="text"
             name="fullname"
@@ -69,7 +69,7 @@ export default function Signup() {
             }}
           />
         </div>
-        <div className="signup-input-container container column">
+        <div className="input-container container column">
           <select
             name="course"
             id="course"
@@ -82,7 +82,7 @@ export default function Signup() {
             <option value="bsit">BSIT</option>
           </select>
         </div>
-        <div className="signup-input-container container column">
+        <div className="input-container container column">
           <select
             name="year"
             id="year"
@@ -97,7 +97,7 @@ export default function Signup() {
             <option value="4">4</option>
           </select>
         </div>
-        <div className="signup-input-container container column">
+        <div className="input-container container column">
           <input
             type="email"
             name="email"
@@ -109,7 +109,7 @@ export default function Signup() {
             }}
           />
         </div>
-        <div className="signup-input-container container column">
+        <div className="input-container container column">
           <input
             type="text"
             name="username"
@@ -121,7 +121,7 @@ export default function Signup() {
             }}
           />
         </div>
-        <div className="signup-input-container container column">
+        <div className="input-container container column">
           <input
             type="password"
             name="password"
