@@ -87,22 +87,21 @@ const MeetingList = () => {
           }, ${date.getUTCDate()}, ${date.getUTCFullYear()}`}
         </p>
 
-        <div className="addNewMeeting-button-container">
+        <button
+          className="addNewMeeting-button-container"
+          onClick={(e) => {
+            navigate("/dashboard/meetings-list/dashboard-meeting-form");
+          }}
+          disabled={isLoading}
+        >
           <div className="img-container">
             <img
               src="https://cdn-icons-png.flaticon.com/512/2997/2997933.png"
               alt="add-button"
             />
           </div>
-          <button
-            onClick={(e) => {
-              navigate("/dashboard/meetings-list/dashboard-meeting-form");
-            }}
-            disabled={isLoading}
-          >
-            New Meeting
-          </button>
-        </div>
+          New Meeting
+        </button>
       </div>
       <div className="rightpane-content-container container column border-style flex">
         {meetingsList?.length === 0 && (

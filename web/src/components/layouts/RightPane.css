@@ -22,20 +22,15 @@
   border-radius: var(--border-radius-container);
   padding: var(--padded-sm);
   border: 1px dashed var(--bg-main-color);
-  transition: 0.3s ease-in-out;
+}
+
+.addNewMeeting-button-container,
+.addNewMeeting-button-container img {
+  transition: 0.3s ease-in;
 }
 
 .addNewMeeting-button-container:hover {
   background-color: var(--bg-main-color);
-}
-
-.addNewMeeting-button-container > button {
-  border: none;
-  background-color: transparent;
-  color: var(--grey-color);
-}
-
-.addNewMeeting-button-container:hover > button {
   color: var(--fg-main-color);
 }
 
