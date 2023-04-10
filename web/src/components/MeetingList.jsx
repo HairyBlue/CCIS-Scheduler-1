@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Loader from "./Loader";
+
 import getMeetingsForCreator from "../api/getMeetings";
 
 const MeetingCard = ({ title, description }) => {
@@ -34,16 +35,19 @@ const MeetingCard = ({ title, description }) => {
 };
 
 const MeetingList = () => {
-  const [meetingsList, setMeetingsList] = useState([]);
+  const [meetingsList, setMeetingsList] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     (async () => {
+      setLoading(true);
       const user = JSON.parse(localStorage.getItem("user"));
       const { meetings } = await getMeetingsForCreator(user);
 
       setMeetingsList(meetings);
+      setLoading(false);
     })();
   }, []);
 
@@ -94,20 +98,26 @@ const MeetingList = () => {
             onClick={(e) => {
               navigate("/dashboard/meetings-list/dashboard-meeting-form");
             }}
+            disabled={isLoading}
           >
             New Meeting
           </button>
         </div>
       </div>
       <div className="rightpane-content-container container column border-style flex">
-        {meetingsList &&
+        {meetingsList ? (
           meetingsList.map((meeting, index) => (
             <MeetingCard
               key={index}
               title={meeting.title}
               description={meeting.description}
             />
-          ))}
+          ))
+        ) : (
+          <div className="container center-content max-size spinner">
+            <Loader />
+          </div>
+        )}
       </div>
     </>
   );
