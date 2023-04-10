@@ -10,6 +10,7 @@ export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
   const user = useSelector((state) => state.user.user);
 
@@ -17,6 +18,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const login = async () => {
+    setLoading(true);
     const user = {
       username,
       password
@@ -37,26 +39,14 @@ export default function Login() {
 
     const { success_message, student } = data;
 
-    console.log(success_message, student);
-
     if (student !== undefined) {
       dispatch(setUser(student));
       dispatch(setLogin(true));
 
-      console.log(
-        "This is the value of student object result from backend",
-        student
-      );
-
       const user = {
         ...student,
-        login: true
+        login
       };
-
-      console.log(
-        "This is the value of user object result from making a new object",
-        user
-      );
 
       localStorage.setItem("user", JSON.stringify(user));
 
@@ -64,6 +54,8 @@ export default function Login() {
     } else {
       setMessage("Invalid username or password, please try again");
     }
+
+    setLoading(false);
   };
 
   const validateForm = (e) => {
