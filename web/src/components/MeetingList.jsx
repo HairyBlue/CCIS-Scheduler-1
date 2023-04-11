@@ -91,7 +91,7 @@ const MeetingList = () => {
             />
           ))
         ) : (
-          <Loader className="container center-content max-size " />
+          <Loader className="container center-content flex " />
         )}
       </div>
     </>

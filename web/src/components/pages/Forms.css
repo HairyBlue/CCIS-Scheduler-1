@@ -16,11 +16,19 @@
   color: var(--dark-grey-color);
 }
 
+.input-container > input,
+.form-container > form > button {
+  font-size: calc(1rem + 0.2vw);
+}
+
 .input-container > input {
-  font-size: calc(0.5rem + 0.6vw);
   border: 1px solid var(--grey-color);
   padding: 0.5rem 1rem;
   border-radius: var(--border-radius-container);
+}
+
+.input-container > select {
+  padding: var(--padded-sm);
 }
 
 .form-container > form > button,

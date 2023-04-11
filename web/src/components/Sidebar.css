@@ -33,6 +33,7 @@
 .header-container {
   border-bottom: 1px solid var(--grey-color);
   padding-bottom: 10px;
+  font-size: calc(0.8rem + 0.5vw);
 }
 
 .options-container {
