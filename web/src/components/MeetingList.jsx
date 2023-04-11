@@ -73,7 +73,7 @@ const MeetingList = () => {
               alt="add-button"
             />
           </div>
-          New Meeting
+          <p>New Meeting</p>
         </button>
       </div>
       <div className="rightpane-content-container container column border-style flex">

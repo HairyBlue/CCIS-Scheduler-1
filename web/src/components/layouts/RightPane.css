@@ -24,6 +24,12 @@
   border: 1px dashed var(--bg-main-color);
 }
 
+@media screen and (orientation: portrait) {
+  .addNewMeeting-button-container > p {
+    display: none;
+  }
+}
+
 .addNewMeeting-button-container,
 .addNewMeeting-button-container img {
   transition: 0.3s ease-in;
