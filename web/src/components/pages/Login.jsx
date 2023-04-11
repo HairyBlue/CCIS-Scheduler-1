@@ -78,7 +78,7 @@ export default function Login() {
             type="text"
             name="username"
             id="username"
-            placeholder="Username or email"
+            placeholder="Username"
             required
             onChange={(e) => {
               setUsername(e.target.value);
