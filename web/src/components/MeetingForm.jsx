@@ -11,24 +11,15 @@ export default function MeetingForm() {
   const [isLoading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState(0);
-  const [day, setDay] = useState("");
-  const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
+  const [date, setDate] = useState(moment().format("YYYY-MM-DD"));
+  const [day, setDay] = useState(moment().format("DD"));
+  const [start, setStart] = useState("08:00");
+  const [end, setEnd] = useState("18:00");
   const [venue_id, setVenue] = useState("");
   const [message, setMessage] = useState("");
 
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
-
-  const today = moment().format("YYYY-MM-DD");
-
-  useEffect(() => {
-    setDate(today);
-    setDay(moment().format("DD"));
-    setStart("08:00");
-    setEnd("18:00");
-  }, []);
 
   const createMeeting = async () => {
     setLoading(true);
@@ -125,14 +116,14 @@ export default function MeetingForm() {
           type="date"
           name="meeting-date"
           id="meeting-date"
-          min={today}
+          min={date}
           required
           onChange={(e) => {
             setDate(e.target.value);
             const formattedDate = new Date(e.target.value);
             setDay(formattedDate.getDate());
           }}
-          value={today}
+          value={date}
         />
       </div>
       <div className="input-container container column">

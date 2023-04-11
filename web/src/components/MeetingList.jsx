@@ -5,12 +5,12 @@ import moment from "moment";
 import Loader from "./Loader";
 import getMeetingsForCreator from "../api/getMeetings";
 
-const MeetingCard = ({ title, description }) => {
-  const [time, setTime] = useState(0);
+const MeetingCard = ({ title, description, date, start, end }) => {
+  const s = moment(start, "HH:mm:ss");
+  const e = moment(end, "HH:mm:ss");
+  const duration = e.diff(s, "hours");
 
-  useEffect(() => {
-    setTime(2);
-  }, []);
+  const timeLeft = moment().to(date);
 
   return (
     <div className="meeting-card-container container">
@@ -24,7 +24,16 @@ const MeetingCard = ({ title, description }) => {
               alt="clock-icon"
             />
           </div>
-          <div>{`${time} hr`}</div>
+          <div>{`Duration: ${duration} ${duration !== 1 ? "hrs" : "hr"}`}</div>
+        </div>
+        <div className="time-tracker-container">
+          <div className="img-container">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/2838/2838779.png"
+              alt="calendar-icon"
+            />
+          </div>
+          <div>{`Time left: ${timeLeft}`}</div>
         </div>
       </div>
       <div className="rightpane-card container">
@@ -48,6 +57,7 @@ const MeetingList = () => {
       const { meetings } = await getMeetingsForCreator(user);
 
       setMeetingsList(meetings);
+      console.log(meetings);
       setLoading(false);
     })();
   }, []);
@@ -77,17 +87,19 @@ const MeetingList = () => {
         </button>
       </div>
       <div className="rightpane-content-container container column border-style flex">
-        {meetingsList?.length === 0 && (
+        {meetingsList === undefined ? (
           <div className="container center-content max-size">
             Wow such empty...
           </div>
-        )}
-        {meetingsList ? (
+        ) : meetingsList ? (
           meetingsList.map((meeting, index) => (
             <MeetingCard
               key={index}
               title={meeting.title}
               description={meeting.description}
+              date={meeting.date}
+              start={meeting.time.start}
+              end={meeting.time.end}
             />
           ))
         ) : (
