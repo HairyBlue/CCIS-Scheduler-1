@@ -11,11 +11,13 @@ const Main = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
 
-    if (user === null || !user?.login) {
+    if (user === null) {
       navigate("/login");
     } else {
       dispatch(setUser(user));
       dispatch(setLogin(true));
+
+      navigate("/dashboard/meetings-list");
     }
   }, []);
 

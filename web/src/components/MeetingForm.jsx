@@ -23,6 +23,13 @@ export default function MeetingForm() {
 
   const today = moment().format("YYYY-MM-DD");
 
+  useEffect(() => {
+    setDate(today);
+    setDay(moment().format("DD"));
+    setStart("08:00");
+    setEnd("18:00");
+  }, []);
+
   const createMeeting = async () => {
     setLoading(true);
 
@@ -35,6 +42,8 @@ export default function MeetingForm() {
       end,
       venue_id
     };
+
+    console.log(meetingInfo);
 
     const headers = new Headers();
 
@@ -121,7 +130,7 @@ export default function MeetingForm() {
           onChange={(e) => {
             setDate(e.target.value);
             const formattedDate = new Date(e.target.value);
-            setDay(parseInt(formattedDate.getDate()));
+            setDay(formattedDate.getDate());
           }}
           value={today}
         />
@@ -136,7 +145,7 @@ export default function MeetingForm() {
             setStart(e.target.value);
           }}
           required
-          value="08:00"
+          value={start}
         />
       </div>
       <div className="input-container container column">
@@ -149,7 +158,7 @@ export default function MeetingForm() {
             setEnd(e.target.value);
           }}
           required
-          value="18:00"
+          value={end}
         />
       </div>
       <select
