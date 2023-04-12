@@ -37,12 +37,31 @@
 }
 
 .options-container {
-  gap: 1.5rem;
+  gap: 0.5rem;
   align-items: flex-start;
 }
 
 .options-container > *:hover {
   cursor: pointer;
+}
+
+.options-container > button {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  background-color: transparent;
+  color: var(--bg-main-color);
+  border: none;
+  font-size: calc(0.5rem + 0.9vw);
+  width: 100%;
+  padding: 10px 5px;
+  border-radius: var(--border-radius-container);
+  white-space: nowrap;
+}
+
+button.highlight {
+  background-color: var(--bg-main-color);
+  color: var(--fg-main-color);
 }
 
 .upcoming-meetings-container,

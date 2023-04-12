@@ -97,7 +97,9 @@ export default function Login() {
             }}
           />
         </div>
-        <button type="submit">Login</button>
+        <button type="submit" disabled={isLoading}>
+          Login
+        </button>
 
         <div className="redirect-signup-container container">
           <p>Don't have an account?</p>

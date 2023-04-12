@@ -7,37 +7,38 @@ import { setLogin, setUser } from "./features/Profile/userSlice";
 import Loader from "./Loader";
 import "./Sidebar.css";
 
-const DropdownMenu = ({ className, name }) => {
-  const [show, setShow] = useState(false);
+// const DropdownMenu = ({ className, name }) => {
+//   const [show, setShow] = useState(false);
 
-  return (
-    <div className={`${className} dropdown-container container`}>
-      <div
-        className="dropdown-menu-container container"
-        onClick={() => {
-          setShow(!show);
-        }}
-      >
-        <h3>{name}</h3>
-        <div className={`img-container ${show ? "rotate" : "return"}`}>
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/9455/9455202.png"
-            alt="angle-brackets"
-          />
-        </div>
-      </div>
-      <ul className={`dropdown-items-container ${show ? "flex-show" : "hide"}`}>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-      </ul>
-    </div>
-  );
-};
+//   return (
+//     <div className={`${className} dropdown-container container`}>
+//       <div
+//         className="dropdown-menu-container container"
+//         onClick={() => {
+//           setShow(!show);
+//         }}
+//       >
+//         <h3>{name}</h3>
+//         <div className={`img-container ${show ? "rotate" : "return"}`}>
+//           <img
+//             src="https://cdn-icons-png.flaticon.com/512/9455/9455202.png"
+//             alt="angle-brackets"
+//           />
+//         </div>
+//       </div>
+//       <ul className={`dropdown-items-container ${show ? "flex-show" : "hide"}`}>
+//         <li>Item 1</li>
+//         <li>Item 2</li>
+//         <li>Item 3</li>
+//       </ul>
+//     </div>
+//   );
+// };
 
 const LeftPane = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [isLoading, setLoading] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const user = useSelector((state) => state.user.user);
 
   const dispatch = useDispatch();
@@ -93,11 +94,29 @@ const LeftPane = () => {
         </button>
       </div>
       <div className={`options-container container column`}>
-        <DropdownMenu
+        <button
+          className={`${activeIndex === 0 ? "highlight" : ""}`}
+          onClick={(e) => {
+            setActiveIndex(0);
+            navigate("/dashboard/meetings-list");
+          }}
+        >
+          Upcoming Meetings
+        </button>
+        <button
+          className={`${activeIndex === 1 ? "highlight" : ""}`}
+          onClick={(e) => {
+            setActiveIndex(1);
+            navigate("/dashboard/meetings-list/archived");
+          }}
+        >
+          Archived Meetings
+        </button>
+        {/* <DropdownMenu
           className="upcoming-meetings-container"
           name="Upcoming Meetings"
         />
-        <DropdownMenu className="archived-meetings-container" name="Archived" />
+        <DropdownMenu className="archived-meetings-container" name="Archived" /> */}
       </div>
       <button onClick={signoutUserHandler} disabled={isLoading}>
         {isLoading ? <Loader width={16} height={16} /> : "Log out"}
