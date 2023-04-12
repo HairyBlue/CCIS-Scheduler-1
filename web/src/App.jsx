@@ -16,6 +16,7 @@ import MeetingList from "./components/MeetingList";
 import MeetingForm from "./components/MeetingForm";
 
 import "./App.css";
+import ArchiveList from "./components/ArchiveList";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,11 +24,9 @@ const router = createBrowserRouter(
       <Route path="/" element={<Layout />}>
         <Route path="dashboard" element={<Dashboard />}>
           <Route path="meetings-list" element={<RightPane />}>
-            <Route index element={<MeetingList />}></Route>
-            <Route
-              path="dashboard-meeting-form"
-              element={<MeetingForm />}
-            ></Route>
+            <Route index element={<MeetingList />} />
+            <Route path="archived" element={<ArchiveList />} />
+            <Route path="dashboard-meeting-form" element={<MeetingForm />} />
           </Route>
         </Route>
         <Route path="login" element={<Login />} />
