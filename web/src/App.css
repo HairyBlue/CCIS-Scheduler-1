@@ -74,6 +74,14 @@ img {
   flex: 1;
 }
 
+.height-max {
+  height: 100%;
+}
+
+.disable-scrollbar {
+  overflow: hidden;
+}
+
 .spinner {
   animation-name: spin;
   animation-duration: 500ms;

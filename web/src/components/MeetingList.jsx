@@ -86,7 +86,7 @@ const MeetingList = () => {
           <p>New Meeting</p>
         </button>
       </div>
-      <div className="rightpane-content-container container column border-style flex">
+      <div className="rightpane-content-container container column border-style flex ">
         {meetingsList === undefined ? (
           <div className="container center-content max-size">
             Wow such empty...
@@ -103,7 +103,7 @@ const MeetingList = () => {
             />
           ))
         ) : (
-          <Loader className="container center-content flex " />
+          <Loader className="container center-content disable-scollbar flex" />
         )}
       </div>
     </>

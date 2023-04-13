@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
+import Loader from "../Loader";
 import { setUser, setLogin } from "../features/Profile/userSlice";
 
 import "./Forms.css";
@@ -98,7 +99,11 @@ export default function Login() {
           />
         </div>
         <button type="submit" disabled={isLoading}>
-          Login
+          {isLoading ? (
+            <Loader className="container center-content" />
+          ) : (
+            "Login"
+          )}
         </button>
 
         <div className="redirect-signup-container container">

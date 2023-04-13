@@ -1,9 +1,14 @@
-const Loader = ({ className, width = 32, height = 32, stroke = "black" }) => {
+const Loader = ({
+  className = "",
+  width = 32,
+  height = 32,
+  stroke = "black"
+}) => {
   return (
     <div className={`${className} spinner`}>
       <svg
         width={width}
-        height={height}
+        height={height + 1}
         viewBox="0 0 13 14"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
