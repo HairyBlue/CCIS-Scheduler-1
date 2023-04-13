@@ -6,17 +6,17 @@ import {
 } from "react-router-dom";
 
 import Layout from "./components/layouts/Main";
-import Dashboard from "./components/layouts/Dashboard";
+import Dashboard from "./components/pages/Dashboard";
 import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
 import VerifyAcc from "./components/pages/VerifyAcc";
+import ArchiveList from "./components/pages/ArchiveList";
 
 import RightPane from "./components/layouts/RightPane";
-import MeetingList from "./components/MeetingList";
-import MeetingForm from "./components/MeetingForm";
+import MeetingList from "./components/pages/MeetingList";
+import MeetingForm from "./components/pages/MeetingForm";
 
 import "./App.css";
-import ArchiveList from "./components/ArchiveList";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

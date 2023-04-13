@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
-import Loader from "./Loader";
+import Loader from "../Loader";
 import "./MeetingForm.css";
 
 export default function MeetingForm() {
