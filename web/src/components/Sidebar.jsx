@@ -55,14 +55,6 @@ const LeftPane = () => {
   const signoutUser = async () => {
     setLoading(true);
 
-    if (user.role === "admin") {
-      dispatch(setLogin(false));
-      dispatch(setUser(null));
-      localStorage.clear();
-      setLoading(false);
-      navigate("/login");
-    }
-
     const headers = new Headers();
 
     headers.append("Content-Type", "application/json");
