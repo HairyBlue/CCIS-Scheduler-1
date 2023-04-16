@@ -21,6 +21,7 @@ import getAllMeetings from "./utils/admin/getAllMeetings";
 import getAllArchivedMeetings from "./utils/admin/getAllArchivedMeetings";
 
 import "./App.css";
+import TeacherForm from "./components/pages/TeacherForm";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -70,6 +71,7 @@ const router = createBrowserRouter(
             <Table title="Teachers" callbackFn={getAllArchivedMeetings} />
           }
         />
+        <Route path="add-teacher" element={<TeacherForm />} />
       </Route>
     </>
   )
