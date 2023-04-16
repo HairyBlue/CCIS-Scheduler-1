@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {

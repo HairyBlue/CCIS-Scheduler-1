@@ -126,20 +126,16 @@ const LeftPane = () => {
           showMenu ? "flex-show" : "hide"
         }`}
       >
-        <ul className="container flex">
-          <li className="container center-content">
-            <button onClick={signoutUserHandler} disabled={isLoading}>
-              {isLoading ? (
-                <Loader
-                  className="container center-content disable-scollbar flex"
-                  stroke="white"
-                />
-              ) : (
-                "Log out"
-              )}
-            </button>
-          </li>
-        </ul>
+        <button onClick={signoutUserHandler} disabled={isLoading}>
+          {isLoading ? (
+            <Loader
+              className="container center-content disable-scollbar flex"
+              stroke="white"
+            />
+          ) : (
+            "Log out"
+          )}
+        </button>
       </div>
     </div>
   );

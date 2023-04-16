@@ -1,6 +1,4 @@
-import { useSelector } from "react-redux";
-
-export default async function getMeetingsForCreator({ token }) {
+export default async function getMeetingsForCreator({ token }, url) {
   const headers = new Headers();
 
   headers.append("Content-Type", "application/json");
@@ -9,7 +7,7 @@ export default async function getMeetingsForCreator({ token }) {
   const response = await fetch(
     `${
       import.meta.env.VITE_REACT_APP_BASE_URL
-    }/api/student/pending-meetings/creator`,
+    }/api/student/${url}`,
     {
       headers
     }

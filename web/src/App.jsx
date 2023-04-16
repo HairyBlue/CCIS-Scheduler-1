@@ -6,14 +6,13 @@ import {
 } from "react-router-dom";
 
 import Layout from "./components/layouts/Main";
-import Dashboard from "./components/pages/Dashboard";
+import Dashboard from "./components/pages/Dashboard/Dashboard";
+import MeetingList from "./components/pages/Dashboard/MeetingList";
 import Login from "./components/pages/Login";
 import Signup from "./components/pages/Signup";
 import VerifyAcc from "./components/pages/VerifyAcc";
-import ArchiveList from "./components/pages/ArchiveList";
 
 import RightPane from "./components/layouts/RightPane";
-import MeetingList from "./components/pages/MeetingList";
 import MeetingForm from "./components/pages/MeetingForm";
 
 import "./App.css";
@@ -25,7 +24,7 @@ const router = createBrowserRouter(
         <Route path="dashboard" element={<Dashboard />}>
           <Route path="meetings-list" element={<RightPane />}>
             <Route index element={<MeetingList />} />
-            <Route path="archived" element={<ArchiveList />} />
+            <Route path="archived" element={<MeetingList url="my-archive-meetings/creator"/>} />
             <Route path="dashboard-meeting-form" element={<MeetingForm />} />
           </Route>
         </Route>

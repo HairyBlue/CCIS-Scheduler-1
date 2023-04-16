@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
-import Loader from "../Loader";
-import getMeetingsForCreator from "../../api/getMeetings";
+import Loader from "../../Loader";
+import getMeetingsForCreator from "../../../utils/getMeetings";
 
 const MeetingCard = ({ title, description, date, start, end }) => {
   const s = moment(start, "HH:mm:ss");
@@ -44,7 +44,7 @@ const MeetingCard = ({ title, description, date, start, end }) => {
   );
 };
 
-const MeetingList = () => {
+const MeetingList = ({ url = "pending-meetings/creator" }) => {
   const [meetingsList, setMeetingsList] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
@@ -54,13 +54,12 @@ const MeetingList = () => {
     (async () => {
       setLoading(true);
       const user = JSON.parse(localStorage.getItem("user"));
-      const { meetings } = await getMeetingsForCreator(user);
+      const { meetings } = await getMeetingsForCreator(user, url);
 
       setMeetingsList(meetings);
-      console.log(meetings);
       setLoading(false);
     })();
-  }, []);
+  }, [url]);
 
   return (
     <>
