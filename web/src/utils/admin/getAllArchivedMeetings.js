@@ -1,6 +1,18 @@
-export default async function getAllArchiveMeetings() {
+export default async function getAllArchiveMeetings({ token }) {
+  const headers = new Headers();
+
+  headers.append("Content-Type", "application/json");
+  headers.append("Authorization", `Bearer ${token}`);
+
   const response = await fetch(
-    `${import.meta.url}/api/v1/admin/list-of-archived-meetings`
+    `${
+      import.meta.env.VITE_REACT_APP_BASE_URL
+    }/api/v1/admin/list-of-archive-meetings`,
+    {
+      headers
+    }
   );
-  return await response.json();
+
+  const data = response.json();
+  return data;
 }

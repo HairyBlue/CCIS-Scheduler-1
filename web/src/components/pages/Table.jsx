@@ -1,29 +1,24 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export default function Table({ title, callbackFn }) {
-  const [students, setStudents] = useState(null);
-  const [meetings, setMeetings] = useState(null);
+  const [list, setList] = useState(null);
+
+  const user = useSelector((state) => state.user.user);
 
   useEffect(() => {
-    const data = callbackFn();
-
-    if (data?.students) {
-      setStudents(data.students);
-    } else if (data?.meetings) {
-      setMeetings(data.meetings);
-    } else {
-      console.log("None");
-    }
+    (async () => {
+      const data = await callbackFn(user);
+      setList(data?.meetings || data?.students);
+    })();
   }, [title, callbackFn]);
 
   return (
     <div className="container column">
       <h3>{title}</h3>
       <ul>
-        <li>Lorem ips</li>
-        <li>Lorem ips</li>
-        <li>Lorem ips</li>
+        {list && list.map((item, index) => <li key={index}>{item.title}</li>)}
       </ul>
     </div>
   );
