@@ -13,11 +13,16 @@ const Main = () => {
 
     if (user === null) {
       navigate("/login");
-    } else {
+    } else if (user.role === "student") {
       dispatch(setUser(user));
       dispatch(setLogin(true));
 
       navigate("/dashboard/meetings-list");
+    } else if (user.role === "admin") {
+      dispatch(setUser(user));
+      dispatch(setLogin(true));
+
+      navigate("/admin");
     }
   }, []);
 

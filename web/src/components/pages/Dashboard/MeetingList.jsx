@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
 import Loader from "../../Loader";
-import getMeetingsForCreator from "../../../utils/getMeetings";
+import getMeetingsForCreator from "../../../utils/getMeetingsStudent";
 
 const MeetingCard = ({ title, description, date, start, end }) => {
   const s = moment(start, "HH:mm:ss");

@@ -10,35 +10,36 @@ import "./Forms.css";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isAdmin, setAdmin] = useState(false);
   const [message, setMessage] = useState(null);
   const [isLoading, setLoading] = useState(false);
-
-  const user = useSelector((state) => state.user.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const login = async () => {
     setLoading(true);
+
+    const url = isAdmin
+      ? `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/v1/admin/login`
+      : `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/login`;
+
     const user = {
       username,
       password
     };
 
-    const response = await fetch(
-      `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/login`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        credentials: "include",
-        body: JSON.stringify(user)
-      }
-    );
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      credentials: "include",
+      body: JSON.stringify(user)
+    });
     const data = await response.json();
 
-    const { success_message, student } = data;
+    const { success_message, student, admin } = data;
 
     if (student !== undefined) {
       dispatch(setUser(student));
@@ -46,12 +47,23 @@ export default function Login() {
 
       const user = {
         ...student,
-        login
+        login,
       };
 
       localStorage.setItem("user", JSON.stringify(user));
 
       navigate("/dashboard/meetings-list/");
+    } else if (admin !== undefined) {
+      dispatch(setUser(admin));
+      dispatch(setLogin(true));
+
+      const user = {
+        ...admin,
+        login,
+      };
+
+      localStorage.setItem("user", JSON.stringify(user));
+      navigate("/admin/");
     } else {
       setMessage("Invalid username or password, please try again");
     }
@@ -97,6 +109,17 @@ export default function Login() {
               setPassword(e.target.value);
             }}
           />
+        </div>
+        <div className="input-container container one-gap">
+          <input
+            type="checkbox"
+            name="is_admin"
+            id="is_admin"
+            onChange={(e) => {
+              setAdmin(e.target.checked);
+            }}
+          />
+          <label htmlFor="is_admin">Admin</label>
         </div>
         <button type="submit" disabled={isLoading}>
           {isLoading ? (

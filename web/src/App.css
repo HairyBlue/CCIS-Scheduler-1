@@ -82,6 +82,10 @@ img {
   overflow: hidden;
 }
 
+.one-gap {
+  gap: 0.5rem;
+}
+
 .spinner {
   animation-name: spin;
   animation-duration: 500ms;

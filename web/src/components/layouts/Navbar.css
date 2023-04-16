@@ -1,0 +1,15 @@
+.admin-header {
+    background-color: black;
+    padding: 20px;
+    justify-content: center;
+}
+
+.navlinks-container {
+    color: white;
+    list-style: none;
+}
+
+.navlinks-container > li > a{
+    color: white;
+    text-decoration: none;
+}

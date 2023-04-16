@@ -35,6 +35,14 @@ import "./Sidebar.css";
 //   );
 // };
 
+const Item = ({ isActive, onClick, children }) => {
+  return (
+    <button className={`${isActive && "highlight"}`} onClick={onClick}>
+      {children}
+    </button>
+  );
+};
+
 const LeftPane = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [isLoading, setLoading] = useState(false);
@@ -46,6 +54,15 @@ const LeftPane = () => {
 
   const signoutUser = async () => {
     setLoading(true);
+
+    if (user.role === "admin") {
+      dispatch(setLogin(false));
+      dispatch(setUser(null));
+      localStorage.clear();
+      setLoading(false);
+      navigate("/login");
+    }
+
     const headers = new Headers();
 
     headers.append("Content-Type", "application/json");
@@ -94,29 +111,24 @@ const LeftPane = () => {
         </button>
       </div>
       <div className={`options-container container column`}>
-        <button
-          className={`${activeIndex === 0 ? "highlight" : ""}`}
-          onClick={(e) => {
+        <Item
+          isActive={activeIndex === 0}
+          onClick={() => {
             setActiveIndex(0);
             navigate("/dashboard/meetings-list");
           }}
         >
           Upcoming Meetings
-        </button>
-        <button
-          className={`${activeIndex === 1 ? "highlight" : ""}`}
-          onClick={(e) => {
+        </Item>
+        <Item
+          isActive={activeIndex === 1}
+          onClick={() => {
             setActiveIndex(1);
             navigate("/dashboard/meetings-list/archived");
           }}
         >
           Archived Meetings
-        </button>
-        {/* <DropdownMenu
-          className="upcoming-meetings-container"
-          name="Upcoming Meetings"
-        />
-        <DropdownMenu className="archived-meetings-container" name="Archived" /> */}
+        </Item>
       </div>
       <button onClick={signoutUserHandler} disabled={isLoading}>
         {isLoading ? <Loader width={16} height={16} /> : "Log out"}

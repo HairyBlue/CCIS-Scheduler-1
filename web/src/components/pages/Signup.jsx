@@ -8,32 +8,41 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [isAdmin, setAdmin] = useState(false);
   const [message, setMessage] = useState(null);
 
   const navigate = useNavigate();
 
   const signup = async () => {
-    const user = {
-      fullname,
-      course,
-      year,
-      email,
-      username,
-      password
-    };
+    let user = {};
+    let url = "";
 
-    const response = await fetch(
-      `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/signup`,
-      {
-        method: "POST",
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
-      }
-    );
+    if (!isAdmin) {
+      url = `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/signup`;
+      user = {
+        fullname,
+        course,
+        year,
+        email,
+        username,
+        password
+      };
+    } else {
+      url = `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/v1/admin/signup`;
+      user = {
+        username,
+        password
+      };
+    }
+
+    const response = await fetch(url, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    });
     const data = await response.json();
 
     const { success_message } = data;
@@ -63,6 +72,7 @@ export default function Signup() {
             id="fullname"
             placeholder="Fullname"
             required
+            disabled={isAdmin}
             onChange={(e) => {
               setFullname(e.target.value);
             }}
@@ -72,6 +82,7 @@ export default function Signup() {
           <select
             name="course"
             id="course"
+            disabled={isAdmin}
             onChange={(e) => {
               setCourse(e.target.value);
             }}
@@ -85,6 +96,7 @@ export default function Signup() {
           <select
             name="year"
             id="year"
+            disabled={isAdmin}
             onChange={(e) => {
               setYear(parseInt(e.target.value));
             }}
@@ -103,6 +115,7 @@ export default function Signup() {
             id="email"
             placeholder="Email"
             required
+            disabled={isAdmin}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -132,6 +145,19 @@ export default function Signup() {
             }}
           />
         </div>
+        <div className="input-container container one-gap">
+          <input
+            type="checkbox"
+            name="is_admin"
+            id="is_admin"
+            required
+            onChange={(e) => {
+              setAdmin(e.target.checked);
+            }}
+          />
+          <label htmlFor="is_admin">Admin</label>
+        </div>
+
         <button type="submit">Sign Up</button>
 
         <div className="redirect-login-container container">
