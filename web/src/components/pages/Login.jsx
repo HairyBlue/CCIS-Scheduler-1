@@ -39,11 +39,10 @@ export default function Login() {
     });
     const data = await response.json();
 
-    const { success_message, student, admin } = data;
+    console.log(data);
 
-    console.log(success_message);
-
-    if (student !== undefined) {
+    if (data?.student !== undefined) {
+      const { success_message, student } = data;
       dispatch(setUser(student));
       dispatch(setLogin(true));
 
@@ -55,7 +54,8 @@ export default function Login() {
       localStorage.setItem("user", JSON.stringify(user));
 
       navigate("/dashboard/meetings-list/");
-    } else if (admin !== undefined) {
+    } else if (data?.admin !== undefined) {
+      const { success_message, admin } = data;
       dispatch(setUser(admin));
       dispatch(setLogin(true));
 
