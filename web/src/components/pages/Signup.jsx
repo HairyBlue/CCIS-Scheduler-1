@@ -36,7 +36,16 @@ export default function Signup() {
       };
     }
 
-    const { data } = await axios.post(url, user);
+    const response = await axios({
+      method: "post",
+      url: url,
+      data: {
+        username,
+        password
+      }
+    });
+
+    const { data } = response;
     const { success_message } = data;
 
     setMessage(success_message);
