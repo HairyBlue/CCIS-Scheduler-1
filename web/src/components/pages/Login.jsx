@@ -46,12 +46,12 @@ export default function Login() {
       dispatch(setUser(student));
       dispatch(setLogin(true));
 
-      const user = {
+      const studentData = {
         ...student,
         login: true
       };
 
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(studentData));
 
       navigate("/dashboard/meetings-list/");
     } else if (data?.admin !== undefined) {
@@ -59,12 +59,12 @@ export default function Login() {
       dispatch(setUser(admin));
       dispatch(setLogin(true));
 
-      const user = {
+      const adminData = {
         ...admin,
         login: true
       };
 
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(adminData));
       navigate("/admin/");
     } else {
       setMessage("Invalid username or password, please try again");
