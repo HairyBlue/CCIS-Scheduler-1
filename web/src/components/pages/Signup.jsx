@@ -150,7 +150,6 @@ export default function Signup() {
             type="checkbox"
             name="is_admin"
             id="is_admin"
-            required
             onChange={(e) => {
               setAdmin(e.target.checked);
             }}

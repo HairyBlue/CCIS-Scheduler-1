@@ -71,10 +71,10 @@ export default function Login() {
     setLoading(false);
   };
 
-  const validateForm = (e) => {
+  const validateForm = async (e) => {
     e.preventDefault();
 
-    login();
+    await login();
   };
 
   return (
