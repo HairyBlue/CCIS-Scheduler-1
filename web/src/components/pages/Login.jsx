@@ -41,13 +41,15 @@ export default function Login() {
 
     const { success_message, student, admin } = data;
 
+    console.log(success_message);
+
     if (student !== undefined) {
       dispatch(setUser(student));
       dispatch(setLogin(true));
 
       const user = {
         ...student,
-        login,
+        login: true
       };
 
       localStorage.setItem("user", JSON.stringify(user));
@@ -59,7 +61,7 @@ export default function Login() {
 
       const user = {
         ...admin,
-        login,
+        login: true
       };
 
       localStorage.setItem("user", JSON.stringify(user));
