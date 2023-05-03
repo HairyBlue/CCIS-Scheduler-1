@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Signup() {
   const [fullname, setFullname] = useState("");
@@ -35,17 +36,9 @@ export default function Signup() {
       };
     }
 
-    const response = await fetch(url, {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(user)
-    });
-    const data = await response.json();
-
+    const { data } = await axios.post(url, user);
     const { success_message } = data;
+
     setMessage(success_message);
     navigate("/login");
   };

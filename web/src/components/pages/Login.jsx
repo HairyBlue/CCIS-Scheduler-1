@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import Loader from "../Loader";
 import { setUser, setLogin } from "../features/Profile/userSlice";
@@ -29,17 +30,7 @@ export default function Login() {
       password
     };
 
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      credentials: "include",
-      body: JSON.stringify(user)
-    });
-    const data = await response.json();
-
-    console.log(data);
+    const { data } = await axios.post(url, user);
 
     if (data?.student !== undefined) {
       const { success_message, student } = data;
