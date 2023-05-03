@@ -40,8 +40,7 @@ export default function Signup() {
       method: "post",
       url: url,
       data: {
-        username,
-        password
+        ...user,
       }
     });
 
