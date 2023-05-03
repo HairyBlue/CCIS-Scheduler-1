@@ -30,7 +30,13 @@ export default function Login() {
       password
     };
 
-    const { data } = await axios.post(url, user);
+    const response = await axios.post(url, user);
+
+    const { data } = response;
+
+    console.log(response);
+
+
 
     if (data?.student !== undefined) {
       const { success_message, student } = data;
