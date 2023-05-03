@@ -86,6 +86,10 @@ img {
   gap: 0.5rem;
 }
 
+.two-gap {
+  gap: 2rem;
+}
+
 .spinner {
   animation-name: spin;
   animation-duration: 500ms;

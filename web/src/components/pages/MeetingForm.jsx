@@ -11,7 +11,7 @@ export default function MeetingForm() {
   const [isLoading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState(moment().format("YYYY-MM-DD"));
+  const [date, setDate] = useState(moment().add(1, "days").format("YYYY-MM-DD"));
   const [day, setDay] = useState(moment().format("DD"));
   const [start, setStart] = useState("08:00");
   const [end, setEnd] = useState("18:00");
@@ -34,8 +34,6 @@ export default function MeetingForm() {
       venue_id
     };
 
-    console.log(meetingInfo);
-
     const headers = new Headers();
 
     headers.append("Content-Type", "application/json");
@@ -57,25 +55,10 @@ export default function MeetingForm() {
     setLoading(false);
   };
 
-  const validateForm = (e) => {
+  const validateForm = async (e) => {
     e.preventDefault();
 
-    // if (!title || !description) {
-    //   setMessage("Please provide a title and description");
-    //   return;
-    // }
-
-    // if (!date || day === 0 || !start || !end) {
-    //   setMessage("Please provide dates and duration");
-    //   return;
-    // }
-
-    // if (!venue_id) {
-    //   setMessage("Please provide a venue");
-    //   return;
-    // }
-
-    createMeeting();
+    await createMeeting();
     navigate("/dashboard/meetings-list/");
   };
 

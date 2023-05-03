@@ -11,29 +11,41 @@ const MeetingCard = ({ title, description, date, start, end }) => {
   const duration = e.diff(s, "hours");
 
   const timeLeft = moment().to(date);
+  const formattedDate = moment(date).format("MMMM Do YYYY");
 
   return (
     <div className="meeting-card-container container">
       <div className="leftpane-card container column">
         <p>{title}</p>
         <p>{description}</p>
-        <div className="time-tracker-container">
-          <div className="img-container">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/2088/2088617.png"
-              alt="clock-icon"
-            />
+        <div className="time-container container two-gap">
+          <div className="time-tracker-container">
+            <div className="img-container">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/2088/2088617.png"
+                alt="clock-icon"
+              />
+            </div>
+            <div>{`Duration: ${duration} ${duration !== 1 ? "hrs" : "hr"}`}</div>
           </div>
-          <div>{`Duration: ${duration} ${duration !== 1 ? "hrs" : "hr"}`}</div>
-        </div>
-        <div className="time-tracker-container">
-          <div className="img-container">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/2838/2838779.png"
-              alt="calendar-icon"
-            />
+          <div className="time-tracker-container">
+            <div className="img-container">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/2838/2838779.png"
+                alt="calendar-icon"
+              />
+            </div>
+            <div>{`Time left: ${timeLeft}`}</div>
           </div>
-          <div>{`Time left: ${timeLeft}`}</div>
+          <div className="time-tracker-container">
+            <div className="img-container">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/2838/2838779.png"
+                alt="calendar-icon"
+              />
+            </div>
+            <div>{`Date: ${formattedDate}`}</div>
+          </div>
         </div>
       </div>
       <div className="rightpane-card container">
