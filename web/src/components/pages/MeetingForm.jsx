@@ -36,16 +36,14 @@ export default function MeetingForm() {
       venue_id
     };
 
-    const headers = new Headers();
-
-    headers.append("Content-Type", "application/json");
-    headers.append("Authorization", `Bearer ${user.token}`);
-
     const { data } = await axios({
       method: "post",
       url: `${
         import.meta.env.VITE_REACT_APP_BASE_URL
       }/api/student/create-meeting`,
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      },
       data: {
         ...meetingInfo
       }

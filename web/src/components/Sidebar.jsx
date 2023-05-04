@@ -56,15 +56,12 @@ const LeftPane = () => {
   const signoutUser = async () => {
     setLoading(true);
 
-    const headers = new Headers();
-
-    headers.append("Content-Type", "application/json");
-    headers.append("Authorization", `Bearer ${user.token}`);
-
     const { data } = await axios({
-      method: "PATCH",
+      method: "patch",
       url: `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/signout`,
-      headers
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
     });
 
     const { success_message } = data;

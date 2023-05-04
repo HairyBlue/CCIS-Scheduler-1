@@ -26,7 +26,9 @@ const MeetingCard = ({ title, description, date, start, end }) => {
                 alt="clock-icon"
               />
             </div>
-            <div>{`Duration: ${duration} ${duration !== 1 ? "hrs" : "hr"}`}</div>
+            <div>{`Duration: ${duration} ${
+              duration !== 1 ? "hrs" : "hr"
+            }`}</div>
           </div>
           <div className="time-tracker-container">
             <div className="img-container">
@@ -64,12 +66,17 @@ const MeetingList = ({ url = "pending-meetings/creator" }) => {
 
   useEffect(() => {
     (async () => {
-      setLoading(true);
-      const user = JSON.parse(localStorage.getItem("user"));
-      const { meetings } = await getMeetingsForCreator(user, url);
+      try {
+        setLoading(true);
+        const user = JSON.parse(localStorage.getItem("user"));
+        const { meetings } = await getMeetingsForCreator(user, url);
 
-      setMeetingsList(meetings);
-      setLoading(false);
+        setMeetingsList(meetings);
+        setLoading(false);
+      } catch (error) {
+        setMeetingsList(null);
+        setLoading(false);
+      }
     })();
   }, [url]);
 
@@ -98,10 +105,8 @@ const MeetingList = ({ url = "pending-meetings/creator" }) => {
         </button>
       </div>
       <div className="rightpane-content-container container column border-style flex ">
-        {meetingsList === undefined ? (
-          <div className="container center-content max-size">
-            Wow such empty...
-          </div>
+        {isLoading ? (
+          <Loader className="container center-content disable-scollbar flex" />
         ) : meetingsList ? (
           meetingsList.map((meeting, index) => (
             <MeetingCard
@@ -114,7 +119,9 @@ const MeetingList = ({ url = "pending-meetings/creator" }) => {
             />
           ))
         ) : (
-          <Loader className="container center-content disable-scollbar flex" />
+          <div className="container center-content max-size">
+            Wow such empty...
+          </div>
         )}
       </div>
     </>
