@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -6,12 +5,15 @@ import moment from "moment";
 
 import Loader from "../Loader";
 import "./MeetingForm.css";
+import axios from "axios";
 
 export default function MeetingForm() {
   const [isLoading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [date, setDate] = useState(moment().add(1, "days").format("YYYY-MM-DD"));
+  const [date, setDate] = useState(
+    moment().add(1, "days").format("YYYY-MM-DD")
+  );
   const [day, setDay] = useState(moment().format("DD"));
   const [start, setStart] = useState("08:00");
   const [end, setEnd] = useState("18:00");
@@ -39,18 +41,17 @@ export default function MeetingForm() {
     headers.append("Content-Type", "application/json");
     headers.append("Authorization", `Bearer ${user.token}`);
 
-    const response = await fetch(
-      `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/create-meeting`,
-      {
-        method: "POST",
-        headers,
-        body: JSON.stringify(meetingInfo)
+    const { data } = await axios({
+      method: "post",
+      url: `${
+        import.meta.env.VITE_REACT_APP_BASE_URL
+      }/api/student/create-meeting`,
+      data: {
+        ...meetingInfo
       }
-    );
+    });
 
-    const { success_message } = await response.json();
-
-    console.log(success_message);
+    const { success_message } = data;
 
     setLoading(false);
   };

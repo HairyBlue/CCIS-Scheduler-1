@@ -25,11 +25,10 @@ export default function Login() {
       ? `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/v1/admin/login`
       : `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/login`;
 
-
     console.log(import.meta.env);
     console.log("URL", url);
 
-    const response = await axios({
+    const { data } = await axios({
       method: "post",
       url: url,
       data: {
@@ -37,10 +36,6 @@ export default function Login() {
         password
       }
     });
-
-    const { data } = response;
-
-    console.log(response);
 
     if (data?.student !== undefined) {
       const { success_message, student } = data;

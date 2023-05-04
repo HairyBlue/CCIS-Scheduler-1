@@ -6,6 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { setLogin, setUser } from "./features/Profile/userSlice";
 import Loader from "./Loader";
 import "./Sidebar.css";
+import axios from "axios";
 
 // const DropdownMenu = ({ className, name }) => {
 //   const [show, setShow] = useState(false);
@@ -60,15 +61,13 @@ const LeftPane = () => {
     headers.append("Content-Type", "application/json");
     headers.append("Authorization", `Bearer ${user.token}`);
 
-    const response = await fetch(
-      `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/signout`,
-      {
-        method: "PATCH",
-        headers
-      }
-    );
+    const { data } = await axios({
+      method: "PATCH",
+      url: `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/signout`,
+      headers
+    });
 
-    const { success_message } = await response.json();
+    const { success_message } = data;
 
     if (success_message !== undefined) {
       console.log(success_message);
@@ -130,7 +129,7 @@ const LeftPane = () => {
           showMenu ? "flex-show" : "hide"
         }`}
       >
-        <button onClick={signoutUserHandler} disabled={isLoading}>
+        <button className="container center-content" onClick={signoutUserHandler} disabled={isLoading}>
           {isLoading ? (
             <Loader
               className="container center-content disable-scollbar flex"

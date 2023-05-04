@@ -1,5 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Outlet } from "react-router-dom";
 
 import Sidebar from "../../Sidebar";
 import "./Dashboard.css";

@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -15,20 +16,19 @@ export default function TeacherForm() {
 
   const signup = async () => {
     let userData = { fullname, email, username, password };
-    const url = `${
-      import.meta.env.VITE_REACT_APP_BASE_URL
-    }/api/v1/admin/add-teacher`;
 
     const headers = new Headers();
 
     headers.append("Content-Type", "application/json");
     headers.append("Authorization", `Bearer ${user.token}`);
 
-    const response = await fetch(url, {
-      method: "POST",
-      credentials: "include",
+    const response = await axios({
+      method: "post",
+      url: `${
+        import.meta.env.VITE_REACT_APP_BASE_URL
+      }/api/v1/admin/add-teacher`,
       headers,
-      body: JSON.stringify(userData)
+      data: { ...userData }
     });
     const data = await response.json();
 
