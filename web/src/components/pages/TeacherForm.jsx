@@ -17,21 +17,17 @@ export default function TeacherForm() {
   const signup = async () => {
     let userData = { fullname, email, username, password };
 
-    const headers = new Headers();
-
-    headers.append("Content-Type", "application/json");
-    headers.append("Authorization", `Bearer ${user.token}`);
-
-    const response = await axios({
+    const { data } = await axios({
       method: "post",
       url: `${
         import.meta.env.VITE_REACT_APP_BASE_URL
       }/api/v1/admin/add-teacher`,
-      headers,
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      },
       data: { ...userData }
     });
-    const data = await response.json();
-
+    
     const { success_message } = data;
     setMessage(success_message);
     navigate("/admin");

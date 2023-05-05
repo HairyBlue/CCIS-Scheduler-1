@@ -9,8 +9,14 @@ export default function Table({ title, callbackFn }) {
 
   useEffect(() => {
     (async () => {
-      const data = await callbackFn(user);
-      setList(data?.meetings || data?.students);
+      try {
+        const data = await callbackFn(user);
+        setList(data?.meetings || data?.students);
+      } catch (error) {
+        console.error(error);
+        console.log(error.response.data);
+        console.log(error.response.status)
+      }
     })();
   }, [title, callbackFn]);
 
