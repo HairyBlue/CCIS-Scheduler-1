@@ -34,6 +34,10 @@ const router = createBrowserRouter(
           <Route path="meetings-list" element={<RightPane />}>
             <Route index element={<MeetingList />} />
             <Route
+              path="upcoming"
+              element={<MeetingList url="my-meetings/creator" />}
+            />
+            <Route
               path="archived"
               element={<MeetingList url="my-archive-meetings/creator" />}
             />

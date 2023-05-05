@@ -98,7 +98,16 @@ const LeftPane = () => {
           <GiHamburgerMenu size={18} />
         </button>
       </div>
-      <div className={`options-container container column`}>
+      <div className="options-container container column">
+        {/* <Item
+          isActive={activeIndex === 0}
+          onClick={() => {
+            setActiveIndex(0);
+            navigate("/dashboard/meetings-list/pending");
+          }}
+        >
+          Pending Meetings
+        </Item> */}
         <Item
           isActive={activeIndex === 0}
           onClick={() => {
@@ -106,12 +115,21 @@ const LeftPane = () => {
             navigate("/dashboard/meetings-list");
           }}
         >
-          Upcoming Meetings
+          Pending Meetings
         </Item>
         <Item
           isActive={activeIndex === 1}
           onClick={() => {
             setActiveIndex(1);
+            navigate("/dashboard/meetings-list/upcoming");
+          }}
+        >
+          Upcoming Meetings
+        </Item>
+        <Item
+          isActive={activeIndex === 2}
+          onClick={() => {
+            setActiveIndex(2);
             navigate("/dashboard/meetings-list/archived");
           }}
         >
@@ -126,7 +144,11 @@ const LeftPane = () => {
           showMenu ? "flex-show" : "hide"
         }`}
       >
-        <button className="container center-content" onClick={signoutUserHandler} disabled={isLoading}>
+        <button
+          className="container center-content"
+          onClick={signoutUserHandler}
+          disabled={isLoading}
+        >
           {isLoading ? (
             <Loader
               className="container center-content disable-scollbar flex"
