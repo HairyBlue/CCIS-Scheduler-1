@@ -19,6 +19,9 @@ import MeetingForm from "./components/pages/MeetingForm";
 
 import getAllMeetings from "./utils/admin/getAllMeetings";
 import getAllArchivedMeetings from "./utils/admin/getAllArchivedMeetings";
+import getAllStudents from "./utils/admin/getAllStudents";
+import getAllTeachers from "./utils/admin/getAllTeachers";
+import getAllVenues from "./utils/admin/getAllVenues";
 
 import "./App.css";
 import TeacherForm from "./components/pages/TeacherForm";
@@ -57,19 +60,15 @@ const router = createBrowserRouter(
         />
         <Route
           path="list-of-venues"
-          element={<Table title="Venues" callbackFn={getAllArchivedMeetings} />}
+          element={<Table title="Venues" callbackFn={getAllVenues} />}
         />
         <Route
           path="list-of-students"
-          element={
-            <Table title="Students" callbackFn={getAllArchivedMeetings} />
-          }
+          element={<Table title="Students" callbackFn={getAllStudents} />}
         />
         <Route
           path="list-of-teachers"
-          element={
-            <Table title="Teachers" callbackFn={getAllArchivedMeetings} />
-          }
+          element={<Table title="Teachers" callbackFn={getAllTeachers} />}
         />
         <Route path="add-teacher" element={<TeacherForm />} />
       </Route>
