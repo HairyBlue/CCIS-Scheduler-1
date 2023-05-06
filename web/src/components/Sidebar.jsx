@@ -7,6 +7,7 @@ import { setLogin, setUser } from "./features/Profile/userSlice";
 import Loader from "./Loader";
 import "./Sidebar.css";
 import axios from "axios";
+import { useEffect } from "react";
 
 // const DropdownMenu = ({ className, name }) => {
 //   const [show, setShow] = useState(false);
@@ -48,10 +49,19 @@ const LeftPane = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [role, setRole] = useState("");
   const user = useSelector((state) => state.user.user);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user.role !== "student") {
+      setRole("teacher");
+    } else {
+      setRole("student");
+    }
+  }, []);
 
   const signoutUser = async () => {
     setLoading(true);
@@ -99,20 +109,11 @@ const LeftPane = () => {
         </button>
       </div>
       <div className="options-container container column">
-        {/* <Item
-          isActive={activeIndex === 0}
-          onClick={() => {
-            setActiveIndex(0);
-            navigate("/dashboard/meetings-list/pending");
-          }}
-        >
-          Pending Meetings
-        </Item> */}
         <Item
           isActive={activeIndex === 0}
           onClick={() => {
             setActiveIndex(0);
-            navigate("/dashboard/meetings-list");
+            navigate(`/dashboard/${role}/meetings-list`);
           }}
         >
           Pending Meetings
@@ -121,7 +122,7 @@ const LeftPane = () => {
           isActive={activeIndex === 1}
           onClick={() => {
             setActiveIndex(1);
-            navigate("/dashboard/meetings-list/upcoming");
+            navigate(`/dashboard/${role}/meetings-list/upcoming`);
           }}
         >
           Upcoming Meetings
@@ -130,7 +131,7 @@ const LeftPane = () => {
           isActive={activeIndex === 2}
           onClick={() => {
             setActiveIndex(2);
-            navigate("/dashboard/meetings-list/archived");
+            navigate(`/dashboard/${role}/meetings-list/archived`);
           }}
         >
           Archived Meetings

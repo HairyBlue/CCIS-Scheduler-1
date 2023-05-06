@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export default async function getMeetingsForCreator({ token }, url) {
+export default async function getMeetingsForStudentCreator({ token }, url) {
   const { data } = await axios({
-    url: `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/${url}`,
+    url: `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/teacher/${url}`,
     headers: {
       Authorization: `Bearer ${token}`
     },

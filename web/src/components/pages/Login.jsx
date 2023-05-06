@@ -11,8 +11,9 @@ import "./Forms.css";
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isAdmin, setAdmin] = useState(false);
   const [message, setMessage] = useState(null);
+  const [isAdmin, setAdmin] = useState(false);
+  const [isStudent, setStudent] = useState(true);
   const [isLoading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -23,16 +24,27 @@ export default function Login() {
 
     const url = isAdmin
       ? `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/v1/admin/login`
-      : `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/student/login`;
+      : `${import.meta.env.VITE_REACT_APP_BASE_URL}/api/${
+          isStudent ? "student" : "teacher"
+        }/login`;
 
-    const { data } = await axios({
-      method: "post",
-      url: url,
-      data: {
-        username,
-        password
-      }
-    });
+    let response = null;
+
+    try {
+      response = await axios({
+        method: "post",
+        url: url,
+        data: {
+          username,
+          password
+        }
+      });
+    } catch (error) {
+      setMessage(error.response.data)
+      setLoading(false);
+    }
+
+    const { data } = response;
 
     if (data?.student !== undefined) {
       const { success_message, student } = data;
@@ -46,7 +58,7 @@ export default function Login() {
 
       localStorage.setItem("user", JSON.stringify(studentData));
 
-      navigate("/dashboard/meetings-list/");
+      navigate("/dashboard/student/meetings-list/");
     } else if (data?.admin !== undefined) {
       const { success_message, admin } = data;
       dispatch(setUser(admin));
@@ -59,8 +71,19 @@ export default function Login() {
 
       localStorage.setItem("user", JSON.stringify(adminData));
       navigate("/admin/");
-    } else {
-      setMessage("Invalid username or password, please try again");
+    } else if (data?.teacher !== undefined) {
+      const { success_message, teacher } = data;
+      dispatch(setUser(teacher));
+      dispatch(setLogin(true));
+
+      const teacherData = {
+        ...teacher,
+        login: true
+      };
+
+      localStorage.setItem("user", JSON.stringify(teacherData));
+
+      navigate("/dashboard/teacher/meetings-list/");
     }
 
     setLoading(false);
@@ -115,6 +138,17 @@ export default function Login() {
             }}
           />
           <label htmlFor="is_admin">Admin</label>
+        </div>
+        <div className="input-container container one-gap">
+          <input
+            type="checkbox"
+            name="is_teacher"
+            id="is_teacher"
+            onChange={(e) => {
+              setStudent(!e.target.checked);
+            }}
+          />
+          <label htmlFor="is_teacher">Teacher</label>
         </div>
         <button type="submit" disabled={isLoading}>
           {isLoading ? (

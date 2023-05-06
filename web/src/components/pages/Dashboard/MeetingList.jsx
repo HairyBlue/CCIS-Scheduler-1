@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
 import Loader from "../../Loader";
-import getMeetingsForCreator from "../../../utils/getMeetingsStudent";
+import getMeetingsForStudentCreator from "../../../utils/student/getMeetingsStudent";
+import getMeetingsForTeacherCreator from "../../../utils/teacher/getMeetingsTeacher";
 
 const MeetingCard = ({ title, description, date, start, end }) => {
   const s = moment(start, "HH:mm:ss");
@@ -69,7 +70,18 @@ const MeetingList = ({ url = "pending-meetings/creator" }) => {
       try {
         setLoading(true);
         const user = JSON.parse(localStorage.getItem("user"));
-        const { meetings } = await getMeetingsForCreator(user, url);
+
+        let data = null;
+
+        if (user.role === "student") {
+          data = await getMeetingsForStudentCreator(user, url);
+        } else if (user.role === "teacher") {
+          data = await getMeetingsForTeacherCreator(user, url);
+        }
+
+        const { meetings } = data;
+
+        console.log(meetings);
 
         setMeetingsList(meetings);
         setLoading(false);
