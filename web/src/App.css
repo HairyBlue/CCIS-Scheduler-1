@@ -39,6 +39,20 @@ img {
   flex-direction: column;
 }
 
+.dynamic-flow {
+  flex-direction: row;
+}
+
+@media screen and (orientation: portrait) {
+  .dynamic-flow {
+    flex-direction: column;
+  }
+
+  .dynamic-flow.two-gap {
+    gap: 0.5rem;
+  }
+}
+
 .border-style {
   box-shadow: 0 4px 6px 0 var(--grey-color);
 }

@@ -141,7 +141,7 @@ const LeftPane = () => {
         {isLoading ? <Loader width={16} height={16} /> : "Log out"}
       </button>
       <div
-        className={`rightpane-dropdown-container ${
+        className={`rightpane-dropdown-container container column ${
           showMenu ? "flex-show" : "hide"
         }`}
       >
@@ -158,6 +158,27 @@ const LeftPane = () => {
           ) : (
             "Log out"
           )}
+        </button>
+        <button
+          onClick={() => {
+            navigate(`/dashboard/${role}/meetings-list`);
+          }}
+        >
+          Pending Meetings
+        </button>
+        <button
+          onClick={() => {
+            navigate(`/dashboard/${role}/meetings-list/upcoming`);
+          }}
+        >
+          Upcoming Meetings
+        </button>
+        <button
+          onClick={() => {
+            navigate(`/dashboard/${role}/meetings-list/archived`);
+          }}
+        >
+          Archived Meetings
         </button>
       </div>
     </div>

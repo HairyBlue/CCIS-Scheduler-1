@@ -15,11 +15,11 @@ export default function Navbar() {
 
     if (user === null) {
       navigate("/login");
-    } else if (user.role === "student") {
+    } else if (user.role !== "admin") {
       dispatch(setUser(user));
       dispatch(setLogin(true));
 
-      navigate("/dashboard/meetings-list");
+      navigate(`/dashboard/${user.role}/meetings-list`);
     } else if (user.role === "admin") {
       dispatch(setUser(user));
       dispatch(setLogin(true));

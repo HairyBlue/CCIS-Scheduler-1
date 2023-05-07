@@ -85,6 +85,21 @@
   height: 16px;
 }
 
+.input-container > button {
+  padding: 10px;
+  border: none;
+}
+
+.input-container > button.accept-meeting {
+  background-color: #71d139;
+  color: var(--fg-main-color);
+}
+
+.input-container > button.decline-meeting {
+  background-color: #d13939;
+  color: var(--fg-main-color);
+}
+
 .rightpane-card {
   gap: 0.5rem;
   align-items: center;

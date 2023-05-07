@@ -31,6 +31,7 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<Layout />}>
         <Route path="dashboard" element={<Dashboard />}>
+          {/* Student Route */}
           <Route path="student/meetings-list" element={<RightPane />}>
             <Route index element={<MeetingList />} />
             <Route
@@ -43,13 +44,15 @@ const router = createBrowserRouter(
             />
             <Route path="dashboard-meeting-form" element={<MeetingForm />} />
           </Route>
+          {/* Teacher Route */}
           <Route path="teacher/meetings-list" element={<RightPane />}>
-            <Route index element={<MeetingList url="my-meetings" />} />
+            <Route index element={<MeetingList url="pending-meetings" />} />
             <Route
               path="archived"
               element={<MeetingList url="archive-meetings" />}
             />
-            <Route path="upcoming" element={<MeetingList url="upcoming" />} />
+            <Route path="upcoming" element={<MeetingList url="my-meetings" />} />
+            <Route path="dashboard-meeting-form" element={<MeetingForm />} />
           </Route>
         </Route>
         <Route path="login" element={<Login />} />

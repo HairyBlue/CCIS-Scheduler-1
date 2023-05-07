@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
-
-import Loader from "../Loader";
-import "./MeetingForm.css";
 import axios from "axios";
+
+import "./MeetingForm.css";
+import Loader from "../Loader";
 
 export default function MeetingForm() {
   const [isLoading, setLoading] = useState(false);
@@ -51,6 +51,7 @@ export default function MeetingForm() {
 
     const { success_message } = data;
 
+    setMessage(success_message);
     setLoading(false);
   };
 
@@ -58,7 +59,7 @@ export default function MeetingForm() {
     e.preventDefault();
 
     await createMeeting();
-    navigate("/dashboard/meetings-list/");
+    navigate(`/dashboard/${user.role}/meetings-list`);
   };
 
   return (
@@ -153,7 +154,7 @@ export default function MeetingForm() {
         <button
           onClick={(e) => {
             e.preventDefault();
-            navigate("/dashboard/meetings-list/");
+            navigate(`/dashboard/${user.role}/meetings-list/`);
           }}
         >
           Cancel
