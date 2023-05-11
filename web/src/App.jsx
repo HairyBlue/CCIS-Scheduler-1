@@ -25,6 +25,7 @@ import getAllVenues from "./utils/admin/getAllVenues";
 
 import "./App.css";
 import TeacherForm from "./components/pages/TeacherForm";
+import DeclineForm from "./components/pages/DeclineForm";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -51,8 +52,14 @@ const router = createBrowserRouter(
               path="archived"
               element={<MeetingList url="archive-meetings" />}
             />
-            <Route path="upcoming" element={<MeetingList url="my-meetings" />} />
+            <Route
+              path="upcoming"
+              element={<MeetingList url="my-meetings" />}
+            />
             <Route path="dashboard-meeting-form" element={<MeetingForm />} />
+          </Route>
+          <Route path=":code/decline-form" element={<RightPane />}>
+            <Route index element={<DeclineForm />} />
           </Route>
         </Route>
         <Route path="login" element={<Login />} />

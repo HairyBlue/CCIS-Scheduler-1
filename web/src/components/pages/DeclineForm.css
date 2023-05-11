@@ -1,0 +1,10 @@
+.decline-form {
+  width: 100%;
+  padding: var(--padded-md);
+}
+
+.decline-form > textarea {
+  width: 100%;
+  resize: none;
+  padding: var(--padded-sm);
+}

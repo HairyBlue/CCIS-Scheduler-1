@@ -92,6 +92,10 @@ img {
   height: 100%;
 }
 
+.width-max {
+  width: 100%;
+}
+
 .disable-scrollbar {
   overflow: hidden;
 }
@@ -109,6 +113,14 @@ img {
   animation-duration: 500ms;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: green;
 }
 
 @keyframes spin {

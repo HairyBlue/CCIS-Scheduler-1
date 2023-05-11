@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { setLogin, setUser } from "../features/Profile/userSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const Main = () => {
   const dispatch = useDispatch();

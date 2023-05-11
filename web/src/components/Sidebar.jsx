@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import axios from "axios";
 
 import { setLogin, setUser } from "./features/Profile/userSlice";
 import Loader from "./Loader";
 import "./Sidebar.css";
-import axios from "axios";
-import { useEffect } from "react";
 
 // const DropdownMenu = ({ className, name }) => {
 //   const [show, setShow] = useState(false);
