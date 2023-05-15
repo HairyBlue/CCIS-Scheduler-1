@@ -17,7 +17,8 @@ const MeetingCard = ({
   start,
   end,
   teacherID,
-  postponed
+  postponed,
+  archived
 }) => {
   const [isLoading, setLoading] = useState(false);
 
@@ -31,43 +32,81 @@ const MeetingCard = ({
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
 
-  console.log(postponed);
-
-  const onAccept = async (e) => {
-    setLoading(true);
+  const onJoinMeetingHandler = async (e) => {
     e.preventDefault();
+    try {
+      setLoading(true);
 
-    const response = await axios({
-      method: "patch",
-      url: `${
-        import.meta.env.VITE_REACT_APP_BASE_URL
-      }/api/teacher/${code}/join-meeting`,
-      headers: {
-        Authorization: `Bearer ${user.token}`
-      }
-    });
+      const response = await axios({
+        method: "patch",
+        url: `${
+          import.meta.env.VITE_REACT_APP_BASE_URL
+        }/api/teacher/${code}/join-meeting`,
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      });
 
-    const { data } = response;
-    const { success_message } = data;
-    console.log(success_message);
-    navigate(`/dashboard/${user.role}/meetings-list`);
-    setLoading(false);
+      const { data } = response;
+      const { success_message } = data;
+      navigate(`/dashboard/${user.role}/meetings-list`);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
-  const onDecline = (e) => {
+  const onPostponeMeetingHandler = (e) => {
     e.preventDefault();
 
-    // (async () => {
-    //   const response = await axios({
-    //     method: "patch",
-    //     url: `${
-    //       import.meta.env.VITE_REACT_APP_BASE_URL
-    //     }/api/teacher/${code}/postponed-meeting`,
-    //     headers: {
-    //       Authorization: `Bearer ${user.token}`
-    //     }
-    //   });
-    // })();
+    (async () => {
+      try {
+        setLoading(true);
+        const response = await axios({
+          method: "patch",
+          url: `${
+            import.meta.env.VITE_REACT_APP_BASE_URL
+          }/api/teacher/${code}/archived-meeting`,
+          headers: {
+            Authorization: `Bearer ${user.token}`
+          },
+          data: {
+            code
+          }
+        });
+
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    })();
+    navigate(`/dashboard/${code}/decline-form`);
+  };
+
+  const onCancelMeetingHandler = (e) => {
+    e.preventDefault();
+
+    (async () => {
+      try {
+        setLoading(true);
+        const response = await axios({
+          method: "patch",
+          url: `${
+            import.meta.env.VITE_REACT_APP_BASE_URL
+          }/api/teacher/${code}/archived-meeting`,
+          headers: {
+            Authorization: `Bearer ${user.token}`
+          },
+          data: {
+            code
+          }
+        });
+
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    })();
 
     navigate(`/dashboard/${code}/decline-form`);
   };
@@ -109,24 +148,37 @@ const MeetingCard = ({
               <div>{`Date: ${formattedDate}`}</div>
             </div>
           </div>
-          {(user.role === "teacher" && postponed !== 1) && (
+          {user.role === "teacher" && !teacherID && (
             <div className="input-container container one-gap">
               {isLoading ? (
                 <Loader className="container center-content disable-scollbar flex" />
               ) : (
-                <button className="accept-meeting" onClick={onAccept}>
-                  Accept
-                </button>
+                <div className="button-container">
+                  <button onClick={onJoinMeetingHandler} disabled={isLoading}>
+                    Join Meeting
+                  </button>
+                </div>
               )}
-              <button className="decline-meeting" onClick={onDecline}>
-                Decline
-              </button>
             </div>
           )}
+          {user.role === "teacher" && archived !== 1 ? (
+            <div className="button-container container one-gap">
+              <button onClick={onPostponeMeetingHandler}>
+                Postpone Meeting
+              </button>
+              <button onClick={onCancelMeetingHandler}>Cancel Meeting</button>
+            </div>
+          ) : null}
         </div>
         <div className="rightpane-card container">
-          <div className={`status-indicator-container ${postponed ? "yellow" : "green"}`}></div>
-          <p className="status-container">{postponed ? "Postponed" : "Pending"}</p>
+          <div
+            className={`status-indicator-container ${
+              postponed ? "yellow" : "green"
+            }`}
+          ></div>
+          <p className="status-container">
+            {postponed ? "Postponed" : "Pending"}
+          </p>
         </div>
       </div>
     </>
@@ -137,7 +189,7 @@ export default function MeetingList({ url = "pending-meetings/creator" }) {
   const [meetingsList, setMeetingsList] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
-
+  const [isArchived, setIsArchived] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -211,6 +263,7 @@ export default function MeetingList({ url = "pending-meetings/creator" }) {
               end={meeting.time.end}
               teacherID={meeting.teacherID}
               postponed={meeting.postponed}
+              archived={meeting.isArchived}
             />
           ))
         ) : (

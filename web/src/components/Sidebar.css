@@ -105,6 +105,7 @@ button.highlight {
   color: var(--fg-main-color);
   border-radius: 0 0 8px 8px;
 }
+
 .rightpane-dropdown-container > ul {
   display: flex;
   flex-direction: column;

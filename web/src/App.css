@@ -120,7 +120,7 @@ img {
 }
 
 .green {
-  background-color: green;
+  background-color: rgb(39, 110, 57);
 }
 
 @keyframes spin {
