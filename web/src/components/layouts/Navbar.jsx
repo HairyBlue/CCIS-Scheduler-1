@@ -41,36 +41,10 @@ export default function Navbar() {
       const workbookData = new Uint8Array(data);
       const workbook = read(workbookData);
 
-      console.log(workbook);
-
-      // const href = URL.createObjectURL(data);
-
-      // console.log(data, href);
-
-      // window.open(href);
-
       writeFileXLSX(workbook, "ccis-scheduler.xlsx");
     } catch (error) {
       console.error(error);
     }
-
-    // const { meetings } = await getAllArchivedMeetings(admin);
-    // const archivedMeetings = await getAllMeetings(admin);
-    // const { studentObject } = await getAllStudents(admin);
-    // const { teacherObject } = await getAllTeachers(admin);
-    // const { venueObject } = await getAllVenues(admin);
-
-    // let meetingsWorksheet = XLSX.utils.json_to_sheet(meetings);
-
-    // console.log(meetingsWorksheet);
-
-    // console.log(
-    //   meetings,
-    //   archivedMeetings.meetings,
-    //   studentObject.students,
-    //   teacherObject.teachers,
-    //   venueObject.venues
-    // );
   };
 
   useEffect(() => {
@@ -96,43 +70,48 @@ export default function Navbar() {
       <header className="admin-header container ">
         <nav>
           <ul className="navlinks-container container one-gap ">
-            <li className="button-container invert-color transparent-background">
-              <button>
+            <li className="button-container container invert-color transparent-background">
+              <button className="flex">
                 <Link to="/">View Meetings</Link>
               </button>
             </li>
-            <li className="button-container invert-color transparent-background">
-              <button>
+            <li className="button-container container invert-color transparent-background">
+              <button className="flex">
                 <Link to="/admin/archived-meetings">
                   View Archived Meetings
                 </Link>
               </button>
             </li>
-            <li className="button-container invert-color transparent-background">
-              <button>
+            <li className="button-container container invert-color transparent-background">
+              <button className="flex">
                 <Link to="/admin/list-of-venues">View Venues</Link>
               </button>
             </li>
-            <li className="button-container invert-color transparent-background">
-              <button>
+            <li className="button-container container invert-color transparent-background">
+              <button className="flex">
                 <Link to="/admin/list-of-students">View Students</Link>
               </button>
             </li>
-            <li className="button-container invert-color transparent-background">
-              <button>
+            <li className="button-container container invert-color transparent-background">
+              <button className="flex">
                 <Link to="/admin/list-of-teachers">View Teachers</Link>
               </button>
             </li>
-            <li className="button-container invert-color transparent-background">
-              <button>
+            <li className="button-container container invert-color transparent-background">
+              <button className="flex">
                 <Link to="/admin/add-teacher">Add Teacher</Link>
               </button>
             </li>
-            <li className="button-container invert-color transparent-background">
-              <button onClick={onExportToExcel}>Export to Excel</button>
+            <li className="button-container container invert-color transparent-background">
+              <button className="flex">
+                <Link to="/admin/add-venue">Add Venue</Link>
+              </button>
             </li>
-            <li className="button-container invert-color transparent-background">
-              <button onClick={onLogoutHander}>Log out</button>
+            <li className="button-container container invert-color transparent-background">
+              <button  className="flex" onClick={onExportToExcel}>Export to Excel</button>
+            </li>
+            <li className="button-container container invert-color transparent-background">
+              <button  className="flex" onClick={onLogoutHander}>Log out</button>
             </li>
           </ul>
         </nav>

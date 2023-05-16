@@ -6,6 +6,7 @@ import axios from "axios";
 
 import "./MeetingForm.css";
 import Loader from "../Loader";
+import { useEffect } from "react";
 
 export default function MeetingForm() {
   const [isLoading, setLoading] = useState(false);
@@ -18,10 +19,31 @@ export default function MeetingForm() {
   const [start, setStart] = useState("08:00");
   const [end, setEnd] = useState("18:00");
   const [venue_id, setVenue] = useState("");
+  const [venues, setVenues] = useState([]);
   const [message, setMessage] = useState("");
 
   const user = useSelector((state) => state.user.user);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await axios({
+          method: "get",
+          url: `${
+            import.meta.env.VITE_REACT_APP_BASE_URL
+          }/api/student/all-venues`,
+          headers: {
+            Authorization: `Bearer ${user.token}`
+          }
+        });
+
+        setVenues(data.venues);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, []);
 
   const createMeeting = async () => {
     setLoading(true);
@@ -144,8 +166,12 @@ export default function MeetingForm() {
         required
       >
         <option value="">--Please select a venue--</option>
-        <option value="1">Miserior Grounds</option>
-        <option value="2">Camp Raymond</option>
+        {/* <option value="1">Miserior Grounds</option>
+        <option value="2">Camp Raymond</option> */}
+        {venues &&
+          venues.map((venue) => (
+            <option value={venue.id} key={venue.id}>{`${venue.area} / ${venue.room}`}</option>
+          ))}
       </select>
       <div className="button-container container">
         <button type="submit" disabled={isLoading}>

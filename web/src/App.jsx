@@ -25,6 +25,7 @@ import getAllVenues from "./utils/admin/getAllVenues";
 
 import "./App.css";
 import TeacherForm from "./components/pages/TeacherForm";
+import VenueForm from "./components/pages/VenueForm";
 import DeclineForm from "./components/pages/DeclineForm";
 
 const router = createBrowserRouter(
@@ -94,6 +95,7 @@ const router = createBrowserRouter(
           element={<Table title="Teachers" callbackFn={getAllTeachers} />}
         />
         <Route path="add-teacher" element={<TeacherForm />} />
+        <Route path="add-venue" element={<VenueForm />} />
       </Route>
     </>
   )

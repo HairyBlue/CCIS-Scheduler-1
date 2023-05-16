@@ -27,7 +27,7 @@ export default function TeacherForm() {
       },
       data: { ...userData }
     });
-    
+
     const { success_message } = data;
     setMessage(success_message);
     navigate("/admin");
@@ -96,7 +96,11 @@ export default function TeacherForm() {
         />
       </div>
 
-      <button type="submit">Confirm</button>
+      <div className="button-container container center-content">
+        <button className="flex" type="submit">
+          Confirm
+        </button>
+      </div>
     </form>
   );
 }
