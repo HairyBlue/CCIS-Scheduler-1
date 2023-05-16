@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function getAllArchiveMeetings({ token }) {
+export default async function getAllArchivedMeetings({ token }) {
   const { data } = await axios({
     url: `${
       import.meta.env.VITE_REACT_APP_BASE_URL

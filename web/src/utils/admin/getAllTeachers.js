@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export default async function getAllStudents({ token }) {
+export default async function getAllTeachers({ token }) {
   const { data } = await axios({
     url: `${
       import.meta.env.VITE_REACT_APP_BASE_URL

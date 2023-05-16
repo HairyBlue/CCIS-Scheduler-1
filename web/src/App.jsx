@@ -66,6 +66,7 @@ const router = createBrowserRouter(
         <Route path="signup" element={<Signup />} />
       </Route>
       <Route path="/verify-account/:id/:verify_token" element={<VerifyAcc />} />
+      {/* Admin Route */}
       <Route path="admin" element={<Navbar />}>
         <Route
           index

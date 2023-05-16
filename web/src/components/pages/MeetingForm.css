@@ -23,6 +23,12 @@
   gap: 1.5rem;
 }
 
+.button-container.invert-color a,
+.button-container.invert-color button {
+  background-color: transparent;
+  color: var(--fg-main-color);
+}
+
 .button-container > button {
   background-color: transparent;
   padding: var(--padded-sm);
@@ -34,4 +40,12 @@
 .button-container > button:hover {
   color: var(--fg-main-color);
   background-color: var(--bg-main-color);
+}
+
+.button-container.invert-color:hover button {
+  background-color: var(--fg-main-color);
+  color: var(--bg-main-color);
+}
+.button-container.invert-color:hover a {
+  color: var(--bg-main-color);
 }
