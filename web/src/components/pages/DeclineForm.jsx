@@ -57,6 +57,7 @@ export default function DeclineForm() {
           postponed_reason: reasonPostponed
         }
       });
+	  console.log(response);
     } catch (error) {
       console.log(error.response.data);
     }
@@ -73,7 +74,7 @@ export default function DeclineForm() {
     <form
       className="decline-form border-style container column one-gap flex"
       onSubmit={onSubmitHandler}
-      method="post"
+      method="PATCH"
     >
       {meeting && (
         <div className="meeting-information-container container column">

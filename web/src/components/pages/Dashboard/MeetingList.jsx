@@ -148,7 +148,7 @@ const MeetingCard = ({
               <div>{`Date: ${formattedDate}`}</div>
             </div>
           </div>
-          {user.role === "teacher" && !teacherID && (
+          {user.role === "teacher" && !teacherID && archived !== 1 && (
             <div className="input-container container one-gap">
               {isLoading ? (
                 <Loader className="container center-content disable-scollbar flex" />
@@ -161,7 +161,7 @@ const MeetingCard = ({
               )}
             </div>
           )}
-          {user.role === "teacher" && archived !== 1 ? (
+          {user.role === "teacher" && archived !== 1 && postponed !== 1 && teacherID ? (
             <div className="button-container container one-gap">
               <button onClick={onPostponeMeetingHandler}>
                 Postpone Meeting
