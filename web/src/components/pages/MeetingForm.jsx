@@ -86,7 +86,7 @@ export default function MeetingForm() {
 
   return (
     <form
-      className="meeting-form-container form-container container column border-style flex"
+      className="meeting-form-container container column border-style flex"
       method="POST"
       action=""
       onSubmit={validateForm}

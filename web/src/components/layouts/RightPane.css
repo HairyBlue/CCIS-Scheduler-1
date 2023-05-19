@@ -4,6 +4,7 @@
 }
 
 .rightpane-header {
+  background-color: var(--fg-main-color);
   display: flex;
   justify-content: space-between;
   padding: var(--padded-md);
@@ -50,6 +51,7 @@
 }
 
 .rightpane-content-container {
+  background-color: var(--fg-main-color);
   padding: var(--padded-md);
   overflow: scroll;
   gap: 1rem;

@@ -7,6 +7,7 @@ import Loader from "../Loader";
 import { setUser, setLogin } from "../features/Profile/userSlice";
 
 import "./Forms.css";
+import logoImage from "../../public/ccis-logo.png";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -40,7 +41,7 @@ export default function Login() {
         }
       });
     } catch (error) {
-      setMessage(error.response.data)
+      setMessage(error.response.data);
       setLoading(false);
     }
 
@@ -96,13 +97,18 @@ export default function Login() {
   };
 
   return (
-    <div className="form-container container column">
+    <div
+      className="form-container container column"
+    >
       <form
-        className="container column border-style"
+        className="container column border-style center-horizontally"
         action=""
         method="POST"
         onSubmit={validateForm}
       >
+        <div className="img-container">
+          <img src={logoImage} alt="ccis-logo" />
+        </div>
         {message && <h3>{message}</h3>}
         <div className="input-container container column">
           <input
@@ -128,29 +134,31 @@ export default function Login() {
             }}
           />
         </div>
-        <div className="input-container container one-gap">
-          <input
-            type="checkbox"
-            name="is_admin"
-            id="is_admin"
-            onChange={(e) => {
-              setAdmin(e.target.checked);
-            }}
-          />
-          <label htmlFor="is_admin">Admin</label>
+        <div className="container one-gap">
+          <div className="input-container container one-gap">
+            <input
+              type="checkbox"
+              name="is_admin"
+              id="is_admin"
+              onChange={(e) => {
+                setAdmin(e.target.checked);
+              }}
+            />
+            <label htmlFor="is_admin">Admin</label>
+          </div>
+          <div className="input-container container one-gap">
+            <input
+              type="checkbox"
+              name="is_teacher"
+              id="is_teacher"
+              onChange={(e) => {
+                setStudent(!e.target.checked);
+              }}
+            />
+            <label htmlFor="is_teacher">Teacher</label>
+          </div>
         </div>
-        <div className="input-container container one-gap">
-          <input
-            type="checkbox"
-            name="is_teacher"
-            id="is_teacher"
-            onChange={(e) => {
-              setStudent(!e.target.checked);
-            }}
-          />
-          <label htmlFor="is_teacher">Teacher</label>
-        </div>
-        <button type="submit" disabled={isLoading}>
+        <button className="flex width-max" type="submit" disabled={isLoading}>
           {isLoading ? (
             <Loader className="container center-content" />
           ) : (

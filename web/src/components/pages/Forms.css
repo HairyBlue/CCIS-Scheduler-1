@@ -1,12 +1,15 @@
-.form-container,
 .form-container {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("src/public/3F\ Deck\ Roofing\ View3\ -\ 1024.png");
 }
 
-.form-container > form,
 .form-container > form {
+  background-color: var(--fg-main-color);
   border-radius: var(--border-radius-container);
   padding: 20px;
   gap: 1.5rem;

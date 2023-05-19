@@ -75,8 +75,12 @@ a {
 }
 
 .img-container {
-  width: 24px;
-  height: 24px;
+  width: 250px;
+  height: 250px;
+}
+
+.center-horizontally {
+  align-items: center;
 }
 
 .center-content {

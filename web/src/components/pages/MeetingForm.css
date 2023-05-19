@@ -1,4 +1,7 @@
 .meeting-form-container {
+
+  background-color: var(--fg-main-color);
+
   gap: 1rem;
   padding: var(--padded-md);
   align-items: flex-start;
