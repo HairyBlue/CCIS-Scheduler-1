@@ -1,6 +1,8 @@
 .decline-form {
   width: 100%;
   padding: var(--padded-md);
+  border-radius: var(--border-radius-container);
+  background-color: var(--fg-main-color);
 }
 
 .decline-form > textarea {

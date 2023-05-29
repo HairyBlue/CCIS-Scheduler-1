@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import "./DeclineForm.css";
 
 export default function DeclineForm() {
-  const { code } = useParams();
+  const { type, code } = useParams();
   const [meeting, setMeeting] = useState(null);
   const [reasonPostponed, setPostponedReason] = useState(null);
   const [user, setUser] = useState(null);
@@ -39,28 +39,66 @@ export default function DeclineForm() {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios({
-        method: "patch",
-        headers: {
-          Authorization: `Bearer ${user.token}`
-        },
-        url: `${
-          import.meta.env.VITE_REACT_APP_BASE_URL
-        }/api/teacher/${code}/postponed-meeting`,
-        data: {
+    (async () => {
+      let data = {};
+      if (type !== "cancel") {
+        data = {
           date: moment(meeting?.date).format("YYYY-MM-DD"),
           day: meeting?.day,
           start: meeting?.time.start,
           end: meeting?.time.end,
           venue_id: meeting?.venue.id,
           postponed_reason: reasonPostponed
-        }
-      });
-	  console.log(response);
-    } catch (error) {
-      console.log(error.response.data);
-    }
+        };
+      } else {
+        data = { code };
+      }
+
+      try {
+        setLoading(true);
+        const response = await axios({
+          method: "patch",
+          url: `${
+            import.meta.env.VITE_REACT_APP_BASE_URL
+          }/api/teacher/${code}/${
+            type !== "cancel" ? "postponed-meeting" : "archived-meeting"
+          }`,
+          headers: {
+            Authorization: `Bearer ${user.token}`
+          },
+          data: {
+            ...data
+          }
+        });
+
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+      }
+    })();
+
+    // try {
+    //   const response = await axios({
+    //     method: "patch",
+    //     headers: {
+    //       Authorization: `Bearer ${user.token}`
+    //     },
+    //     url: `${
+    //       import.meta.env.VITE_REACT_APP_BASE_URL
+    //     }/api/teacher/${code}/postponed-meeting`,
+    //     data: {
+    //       date: moment(meeting?.date).format("YYYY-MM-DD"),
+    //       day: meeting?.day,
+    //       start: meeting?.time.start,
+    //       end: meeting?.time.end,
+    //       venue_id: meeting?.venue.id,
+    //       postponed_reason: reasonPostponed
+    //     }
+    //   });
+    // console.log(response);
+    // } catch (error) {
+    //   console.log(error.response.data);
+    // }
 
     navigate(`/dashboard/${user.role}/meetings-list`);
   };

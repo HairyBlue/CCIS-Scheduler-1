@@ -59,56 +59,56 @@ const MeetingCard = ({
   const onPostponeMeetingHandler = (e) => {
     e.preventDefault();
 
-    (async () => {
-      try {
-        setLoading(true);
-        const response = await axios({
-          method: "patch",
-          url: `${
-            import.meta.env.VITE_REACT_APP_BASE_URL
-          }/api/teacher/${code}/archived-meeting`,
-          headers: {
-            Authorization: `Bearer ${user.token}`
-          },
-          data: {
-            code
-          }
-        });
+    // (async () => {
+    //   try {
+    //     setLoading(true);
+    //     const response = await axios({
+    //       method: "patch",
+    //       url: `${
+    //         import.meta.env.VITE_REACT_APP_BASE_URL
+    //       }/api/teacher/${code}/archived-meeting`,
+    //       headers: {
+    //         Authorization: `Bearer ${user.token}`
+    //       },
+    //       data: {
+    //         code
+    //       }
+    //     });
 
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-      }
-    })();
-    navigate(`/dashboard/${code}/decline-form`);
+    //     setLoading(false);
+    //   } catch (error) {
+    //     setLoading(false);
+    //   }
+    // })();
+    navigate(`/dashboard/postpone/${code}/decline-form`);
   };
 
   const onCancelMeetingHandler = (e) => {
     e.preventDefault();
 
-    (async () => {
-      try {
-        setLoading(true);
-        const response = await axios({
-          method: "patch",
-          url: `${
-            import.meta.env.VITE_REACT_APP_BASE_URL
-          }/api/teacher/${code}/archived-meeting`,
-          headers: {
-            Authorization: `Bearer ${user.token}`
-          },
-          data: {
-            code
-          }
-        });
+    // (async () => {
+    //   try {
+    //     setLoading(true);
+    //     const response = await axios({
+    //       method: "patch",
+    //       url: `${
+    //         import.meta.env.VITE_REACT_APP_BASE_URL
+    //       }/api/teacher/${code}/archived-meeting`,
+    //       headers: {
+    //         Authorization: `Bearer ${user.token}`
+    //       },
+    //       data: {
+    //         code
+    //       }
+    //     });
 
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-      }
-    })();
+    //     setLoading(false);
+    //   } catch (error) {
+    //     setLoading(false);
+    //   }
+    // })();
 
-    navigate(`/dashboard/${code}/decline-form`);
+    navigate(`/dashboard/cancel/${code}/decline-form`);
   };
 
   return (

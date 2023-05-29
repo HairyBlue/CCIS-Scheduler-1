@@ -8,6 +8,11 @@
   background-image: url("src/public/3F\ Deck\ Roofing\ View3\ -\ 1024.png");
 }
 
+.message-container {
+  overflow-wrap: break-word;
+  width: 100%;
+}
+
 .form-container > form {
   background-color: var(--fg-main-color);
   border-radius: var(--border-radius-container);

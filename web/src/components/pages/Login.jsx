@@ -109,7 +109,7 @@ export default function Login() {
         <div className="img-container">
           <img src={logoImage} alt="ccis-logo" />
         </div>
-        {message && <h3>{message}</h3>}
+        {message && <h3 className="message-container">{message}</h3>}
         <div className="input-container container column">
           <input
             type="text"
