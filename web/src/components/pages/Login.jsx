@@ -7,7 +7,7 @@ import Loader from "../Loader";
 import { setUser, setLogin } from "../features/Profile/userSlice";
 
 import "./Forms.css";
-import logoImage from "../../public/ccis-logo.png";
+import logoImage from "/ccis-logo.png";
 
 export default function Login() {
   const [username, setUsername] = useState("");

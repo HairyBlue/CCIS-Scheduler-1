@@ -5,7 +5,7 @@
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("../../../src/public/Lobby03-1024.jpg");
+  background-image: url("/Lobby03-1024.jpg");
 }
 
 @media screen and (orientation: portrait) {
